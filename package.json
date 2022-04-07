@@ -1,0 +1,8 @@
+{
+  "name": "rn-fun",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:judemorrissey/rn-fun.git",
+  "author": "Jude Morrissey <judemorrissey@users.noreply.github.com>",
+  "license": "MIT"
+}
