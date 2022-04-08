@@ -36,6 +36,9 @@ module.exports = {
         // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-unused-vars.md#how-to-use
         'no-unused-vars': OFF,
         '@typescript-eslint/no-unused-vars': [ERROR, {args: 'none'}],
+        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-duplicate-imports.md
+        "no-duplicate-imports": "off",
+        "@typescript-eslint/no-duplicate-imports": ["error"],
         // various other rules outside of the template
         'curly': ERROR,
         'default-case': ERROR,
@@ -59,7 +62,6 @@ module.exports = {
           },
         ],
         'no-div-regex': ERROR,
-        'no-duplicate-imports': ERROR,
         'no-else-return': ERROR,
         'no-empty-function': ERROR,
         'no-eval': ERROR,
