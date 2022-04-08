@@ -8,4 +8,5 @@
   "prettier.bracketSpacing": false,
   "prettier.jsxBracketSameLine": true,
   "prettier.singleQuote": true,
+  "typescript.preferences.quoteStyle": "double",
 }
