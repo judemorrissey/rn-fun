@@ -8,7 +8,7 @@ type Props = {};
 function Home(props: Props) {
   return (
     <View style={styles.container}>
-      <Text>{`Hello you are home`}</Text>
+      <Text style={styles.text}>{`Hello you are home`}</Text>
     </View>
   );
 }
