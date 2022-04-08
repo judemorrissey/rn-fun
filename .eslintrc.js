@@ -37,8 +37,26 @@ module.exports = {
         'no-unused-vars': OFF,
         '@typescript-eslint/no-unused-vars': [ERROR, {args: 'none'}],
         // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-duplicate-imports.md
-        "no-duplicate-imports": "off",
-        "@typescript-eslint/no-duplicate-imports": ["error"],
+        'no-duplicate-imports': 'off',
+        '@typescript-eslint/no-duplicate-imports': [ERROR],
+        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/consistent-type-imports.md
+        '@typescript-eslint/consistent-type-imports': [ERROR],
+        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/strict-boolean-expressions.md
+        // TODO: why does this cause ESLint to stop working?
+        // '@typescript-eslint/strict-boolean-expressions': [
+        //   ERROR, {
+        //     'allowString': false,
+        //     'allowNumber': false,
+        //     'allowNullableObject': false,
+        //   },
+        // ],
+        // react specific rules
+        'react/jsx-boolean-value': [ERROR, 'always'],
+        'react/jsx-fragments': ERROR,
+        'react/jsx-no-literals': ERROR,
+        'react/jsx-no-useless-fragment': ERROR,
+        'react/jsx-sort-props': ERROR,
+        'react/jsx-pascal-case': [ERROR],
         // various other rules outside of the template
         'curly': ERROR,
         'default-case': ERROR,
