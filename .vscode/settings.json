@@ -9,4 +9,8 @@
   "prettier.jsxBracketSameLine": true,
   "prettier.singleQuote": true,
   "typescript.preferences.quoteStyle": "double",
+  "editor.rulers": [
+    80,
+    120
+  ],
 }

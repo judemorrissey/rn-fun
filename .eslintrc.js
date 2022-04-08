@@ -128,5 +128,12 @@ module.exports = {
         ],
       },
     },
+
+    {
+      files: ['src/lib/theme/*.ts'],
+      rules: {
+        'sort-keys': OFF,
+      },
+    }
   ],
 };

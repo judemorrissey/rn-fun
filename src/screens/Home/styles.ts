@@ -1,9 +1,19 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, TextStyle, ViewStyle} from 'react-native';
 
 import theme from 'lib/theme';
 
-export default StyleSheet.create({
+type Styles = {
+  button: ViewStyle;
+  container: ViewStyle;
+  text: TextStyle;
+};
+
+export default StyleSheet.create<Styles>({
+  button: {
+    marginVertical: 8,
+  },
   container: {
+    alignItems: 'center',
     backgroundColor: 'steelblue',
     flex: 1,
   },
