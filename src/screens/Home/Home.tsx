@@ -1,37 +1,47 @@
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import type {RootStackParams} from 'screens/types';
+
 import * as React from 'react';
 import {useCallback} from 'react';
 import {Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
 import Button from 'components/Button';
 
 import styles from './styles';
 
-type Props = {};
+type HomeScreenProp = NativeStackNavigationProp<RootStackParams, 'Home'>;
 
-function Home(props: Props) {
-  const {navigation} = props;
-  const onPress = useCallback(
-    (name) => () => {
-      navigation.navigate(`${name}Home`);
-    },
-    [navigation],
-  );
+function Home() {
+  const navigation = useNavigation<HomeScreenProp>();
+
+  const onPressJude = useCallback(() => {
+    navigation.navigate('JudeHome');
+  }, [navigation]);
+
+  const onPressVeronica = useCallback(() => {
+    navigation.navigate('VeronicaHome');
+  }, [navigation]);
+
+  const onPressMatthew = useCallback(() => {
+    navigation.navigate('MatthewHome');
+  }, [navigation]);
+
+  const onPressKen = useCallback(() => {
+    navigation.navigate('KenHome');
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{`Hello you are home`}</Text>
-      <Button onPress={onPress('Jude')} style={styles.button} title="Jude" />
+      <Button onPress={onPressJude} style={styles.button} title="Jude" />
       <Button
-        onPress={onPress('Veronica')}
+        onPress={onPressVeronica}
         style={styles.button}
         title="Veronica"
       />
-      <Button
-        onPress={onPress('Matthew')}
-        style={styles.button}
-        title="Matthew"
-      />
-      <Button onPress={onPress('Ken')} style={styles.button} title="Ken" />
+      <Button onPress={onPressMatthew} style={styles.button} title="Matthew" />
+      <Button onPress={onPressKen} style={styles.button} title="Ken" />
     </View>
   );
 }
