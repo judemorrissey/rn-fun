@@ -1,15 +1,126 @@
+const OFF = 'off';
+const ERROR = 'error';
+
 module.exports = {
   root: true,
-  extends: ['eslint:recommended', '@react-native-community', 'plugin:prettier/recommended'],
+  env: {
+    browser: false,
+    es6: true,
+    node: true,
+  },
+  extends: [
+    '@react-native-community',
+    // begin extends outside of default from template
+    'plugin:react-hooks/recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+  ],
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: [
+    '@typescript-eslint',
+    // begin plugins outside of default from template
+    'eslint-comments',
+    'react',
+  ],
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
       rules: {
-        '@typescript-eslint/no-shadow': ['error'],
-        'no-shadow': 'off',
-        'no-undef': 'off',
+        '@typescript-eslint/no-shadow': [ERROR],
+        'no-shadow': OFF,
+        'no-undef': OFF,
+        // use the typescript eslint no-use rule instead of the eslint one
+        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use
+        'no-use-before-define': OFF,
+        '@typescript-eslint/no-use-before-define': [ERROR],
+        // various other rules outside of the template
+        'curly': ERROR,
+        'default-case': ERROR,
+        'default-case-last': ERROR,
+        'default-param-last': ERROR,
+        'dot-notation': ERROR,
+        'eqeqeq': [
+          ERROR,
+          'always',
+          {
+            null: 'never',
+          },
+        ],
+        'no-await-in-loop': ERROR,
+        'no-confusing-arrow': ERROR,
+        'no-console': ERROR,
+        'no-constant-condition': [
+          ERROR,
+          {
+            checkLoops: false,
+          },
+        ],
+        'no-div-regex': ERROR,
+        'no-duplicate-imports': ERROR,
+        'no-else-return': ERROR,
+        'no-empty-function': ERROR,
+        'no-eval': ERROR,
+        'no-extend-native': ERROR,
+        'no-extra-bind': ERROR,
+        'no-func-assign': ERROR,
+        'no-implicit-coercion': ERROR,
+        'no-implicit-globals': ERROR,
+        'no-implied-eval': ERROR,
+        'no-iterator': ERROR,
+        'no-loop-func': ERROR,
+        'no-multi-str': ERROR,
+        'no-negated-condition': ERROR,
+        'no-nested-ternary': ERROR,
+        'no-new': ERROR,
+        'no-new-func': ERROR,
+        'no-new-wrappers': ERROR,
+        'no-octal-escape': ERROR,
+        'no-param-reassign': ERROR,
+        'no-proto': ERROR,
+        'no-prototype-builtins': ERROR,
+        'no-redeclare': ERROR,
+        'no-return-assign': ERROR,
+        'no-return-await': ERROR,
+        'no-script-url': ERROR,
+        'no-self-compare': ERROR,
+        'no-sequences': ERROR,
+        'no-tabs': ERROR,
+        'no-template-curly-in-string': ERROR,
+        'no-throw-literal': ERROR,
+        'no-undef-init': ERROR,
+        'no-undefined': ERROR,
+        'no-useless-backreference': ERROR,
+        'no-useless-concat': ERROR,
+        'no-useless-return': ERROR,
+        'prefer-const': ERROR,
+        'prefer-regex-literals': ERROR,
+        'radix': ERROR,
+        'require-atomic-updates': ERROR,
+        'require-await': ERROR,
+        'require-unicode-regexp': ERROR,
+        'spaced-comment': [
+          ERROR,
+          'always',
+          {
+            line: {
+              markers: ['/'],
+              exceptions: ['-', '+'],
+            },
+            block: {
+              markers: ['!'],
+              exceptions: ['*'],
+              balanced: true,
+            },
+          },
+        ],
+        'wrap-iife': [ERROR, 'inside'],
+        'yoda': [
+          ERROR,
+          'never',
+          {
+            exceptRange: true,
+          },
+        ],
       },
     },
   ],

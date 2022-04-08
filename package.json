@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "metro": "react-native start --reset-cache",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -26,6 +27,8 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.4.0",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.67.0",
     "prettier": "2.6.2",
