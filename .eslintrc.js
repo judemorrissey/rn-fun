@@ -35,7 +35,7 @@ module.exports = {
         '@typescript-eslint/no-use-before-define': [ERROR],
         // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-unused-vars.md#how-to-use
         'no-unused-vars': OFF,
-        '@typescript-eslint/no-unused-vars': [ERROR, {"args": "none"}],
+        '@typescript-eslint/no-unused-vars': [ERROR, {args: 'none'}],
         // various other rules outside of the template
         'curly': ERROR,
         'default-case': ERROR,
@@ -101,6 +101,8 @@ module.exports = {
         'require-atomic-updates': ERROR,
         'require-await': ERROR,
         'require-unicode-regexp': ERROR,
+        'sort-imports': [ERROR, {ignoreDeclarationSort: true}],
+        'sort-keys': ERROR,
         'spaced-comment': [
           ERROR,
           'always',
