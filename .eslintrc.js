@@ -29,10 +29,13 @@ module.exports = {
         '@typescript-eslint/no-shadow': [ERROR],
         'no-shadow': OFF,
         'no-undef': OFF,
-        // use the typescript eslint no-use rule instead of the eslint one
+        // use some typescript rules instead of the default eslint
         // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-use-before-define.md#how-to-use
         'no-use-before-define': OFF,
         '@typescript-eslint/no-use-before-define': [ERROR],
+        // https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/docs/rules/no-unused-vars.md#how-to-use
+        'no-unused-vars': OFF,
+        '@typescript-eslint/no-unused-vars': [ERROR, {"args": "none"}],
         // various other rules outside of the template
         'curly': ERROR,
         'default-case': ERROR,
