@@ -18,6 +18,7 @@ AppIcons original 1024x1024 created using [GIMP](https://www.gimp.org/), and res
 
 ## iOS
 - Open `ios/RNFun.xcworkspace` in Xcode
+- install necessary cocoapods `pushd ios; pod install; popd;`
 - build and run the project on an iOS simulator of your choice
 
 
@@ -46,6 +47,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
   - using AVD Manager, add Android Emulators of your choosing, or attach a physical Android device with USB Debugging turned on
 
 ## iOS
-- install Cocoapods (I used homebrew to avoid pain and suffering with M1 macs)
+- install [Cocoapods](https://cocoapods.org/) (I used homebrew to avoid pain and suffering with M1 macs)
   - `brew install cocoapods`
 - Install [Xcode](https://apps.apple.com/us/app/xcode/id497799835)
