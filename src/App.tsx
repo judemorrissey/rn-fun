@@ -14,8 +14,20 @@ import {DarkTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Home from './screens/Home';
+import JudeHome from './screens/JudeHome';
+import KenHome from './screens/KenHome';
+import MatthewHome from './screens/MatthewHome';
+import VeronicaHome from './screens/VeronicaHome';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Home: undefined;
+  JudeHome: undefined;
+  KenHome: undefined;
+  MatthewHome: undefined;
+  VeronicaHome: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
@@ -23,6 +35,10 @@ const App = () => {
       <StatusBar barStyle={'light-content'} />
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="JudeHome" component={JudeHome} />
+        <Stack.Screen name="KenHome" component={KenHome} />
+        <Stack.Screen name="MatthewHome" component={MatthewHome} />
+        <Stack.Screen name="VeronicaHome" component={VeronicaHome} />
       </Stack.Navigator>
     </NavigationContainer>
   );

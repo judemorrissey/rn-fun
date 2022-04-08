@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useCallback} from 'react';
-import {Alert, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 
 import Button from 'components/Button';
 
@@ -9,14 +9,12 @@ import styles from './styles';
 type Props = {};
 
 function Home(props: Props) {
+  const {navigation} = props;
   const onPress = useCallback(
     (name) => () => {
-      Alert.alert(
-        'You Pressed!',
-        `Yep, this should take you to ${name}'s screen, but it's not implemented yet.`,
-      );
+      navigation.navigate(`${name}Home`);
     },
-    [],
+    [navigation],
   );
 
   return (

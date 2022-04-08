@@ -16,7 +16,7 @@
   //   "description": "Log output to console"
   // }
   "React Native Component": {
-    "scope": "javascriptreact,typescriptreact",
+    "scope": "typescriptreact",
     "prefix": "rn-component",
     "body": [
       "import * as React from 'react';",
@@ -40,7 +40,7 @@
     "description": "Use this for the actual component file e.g. <ComponentName>/<ComponentName>.tsx"
   },
   "React Native Styles File": {
-    "scope": "javascript,typescript",
+    "scope": "typescript",
     "prefix": "rn-styles",
     "body": [
       "import type {TextStyle, ViewStyle} from 'react-native';",
@@ -67,7 +67,7 @@
     "description": "Use this for the <ComponentName>/styles.ts file"
   },
   "React Native Component Index": {
-    "scope": "javascript,typescript",
+    "scope": "typescript",
     "prefix": "rn-index",
     "body": [
       "import ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/} from './${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/}';",
