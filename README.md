@@ -3,6 +3,8 @@ React Native app development playground
 
 Initialized using the [React Native CLI Quickstart](https://reactnative.dev/docs/environment-setup) guide, initialized with the template `react-native-template-typescript` (be sure to install `@react-native-community/cli` to be able to use the template!)
 
+Uses TypeScript + ESLint + Prettier + '@react-navigation/native'
+
 AppIcons original 1024x1024 created using [GIMP](https://www.gimp.org/), and resized using [AppIconMaker.co](https://appiconmaker.co/)
 
 ![RNFun Sample](https://user-images.githubusercontent.com/5974771/162132600-de1add9b-6464-47bb-9a4b-786fbf6e312b.png)
@@ -26,7 +28,7 @@ AppIcons original 1024x1024 created using [GIMP](https://www.gimp.org/), and res
 
 ## General Prerequisites
 - refer to the [React Native CLI Quickstart](https://reactnative.dev/docs/environment-setup) guide (be sure to click the tab that's _not_ `expo` related
-- install [yarn classic](https://classic.yarnpkg.com/lang/en/docs/install/)
+- install [yarn classic](https://classic.yarnpkg.com/lang/en/docs/install/) (V1.x, uses 'node_modules')
   - macOS: I used homebrew to install mine `brew install yarn`
 
 ## Android
