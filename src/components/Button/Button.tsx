@@ -1,5 +1,8 @@
 import * as React from 'react';
-import {Pressable, StyleProp, StyleSheet, Text, ViewStyle} from 'react-native';
+
+import type {StyleProp, ViewStyle} from 'react-native';
+import {Pressable, StyleSheet, Text} from 'react-native';
+
 import styles from './styles';
 
 type Props = {
