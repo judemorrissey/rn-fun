@@ -4,4 +4,5 @@ export type RootStackParams = {
   KenHome: undefined;
   MatthewHome: undefined;
   VeronicaHome: undefined;
+  SemaHome: undefined;
 };
