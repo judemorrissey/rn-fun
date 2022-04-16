@@ -31,6 +31,10 @@ function Home() {
     navigation.navigate('KenHome');
   }, [navigation]);
 
+  const onPressSema = useCallback(() => {
+    navigation.navigate('SemaHome');
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{`Hello you are home`}</Text>
@@ -42,6 +46,7 @@ function Home() {
       />
       <Button onPress={onPressMatthew} style={styles.button} title="Matthew" />
       <Button onPress={onPressKen} style={styles.button} title="Ken" />
+      <Button onPress={onPressSema} style={styles.button} title="Sema"/>
     </View>
   );
 }
