@@ -46,7 +46,7 @@ function Home() {
       />
       <Button onPress={onPressMatthew} style={styles.button} title="Matthew" />
       <Button onPress={onPressKen} style={styles.button} title="Ken" />
-      <Button onPress={onPressSema} style={styles.button} title="Sema"/>
+      <Button onPress={onPressSema} style={styles.button} title="Sema" />
     </View>
   );
 }

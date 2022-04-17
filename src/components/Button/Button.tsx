@@ -17,7 +17,8 @@ function Button(props: Props) {
   return (
     <Pressable
       onPress={onPress}
-      style={StyleSheet.compose(styles.container, style)}>
+      style={StyleSheet.compose(styles.container, style)}
+      testID="button">
       <Text style={styles.text}>{title}</Text>
     </Pressable>
   );

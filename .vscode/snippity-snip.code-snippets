@@ -66,6 +66,22 @@
     ],
     "description": "Use this for the <ComponentName>/styles.ts file"
   },
+  "React Native Component Test": {
+    "scope": "typescriptreact",
+    "prefix": "rn-test-component",
+    "body": [
+      "import * as React from 'react';",
+      "import {render} from '@testing-library/react-native';",
+      "",
+      "import ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/} from './';",
+      "",
+      "it('renders correctly', () => {",
+      "  render(<${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/} />);",
+      "});",
+      "",
+    ],
+    "description": "Use this for the actual component file e.g. <ComponentName>/<ComponentName>.tsx"
+  },
   "React Native Component Index": {
     "scope": "typescript",
     "prefix": "rn-index",
