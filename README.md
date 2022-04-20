@@ -1,5 +1,5 @@
 # rn-fun
-Hello friends! This is a React Native project that I've started to hit a couple personal goals:
+Hello friends! This is a React Native project that I, [@judemorrissey](https://github.com/judemorrissey), have started to hit a couple personal goals:
 - learn how to build a React Native app from scratch, as I've only worked on RN where the foundations have been laid out already
 - utilize this project as a framework for teaching/mentoring others who are interested in learning mobile app development using React Native
 - have a place to implement some of my ideas, and hopefully others would have a good space to do theirs too
