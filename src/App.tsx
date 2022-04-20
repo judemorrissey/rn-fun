@@ -21,6 +21,7 @@ import KenHome from 'screens/KenHome';
 import MatthewHome from 'screens/MatthewHome';
 import SemaHome from 'screens/SemaHome';
 import VeronicaHome from 'screens/VeronicaHome';
+import BlaireHome from 'screens/BlaireHome';
 
 const Stack = createNativeStackNavigator<RootStackParams>();
 
@@ -35,6 +36,7 @@ const App = () => {
         <Stack.Screen component={MatthewHome} name="MatthewHome" />
         <Stack.Screen component={SemaHome} name="SemaHome" />
         <Stack.Screen component={VeronicaHome} name="VeronicaHome" />
+        <Stack.Screen component={BlaireHome} name="BlaireHome" />
       </Stack.Navigator>
     </NavigationContainer>
   );
