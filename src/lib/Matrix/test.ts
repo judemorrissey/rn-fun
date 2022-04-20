@@ -1,4 +1,4 @@
-import Matrix from './matrix';
+import Matrix from './Matrix';
 
 describe('Matrix', () => {
   it('constructs properly', () => {
