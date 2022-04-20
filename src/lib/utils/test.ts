@@ -1,3 +1,5 @@
+import crypto from 'crypto';
+
 import utils from './utils';
 
 describe('upper and lower case utils', () => {
@@ -135,30 +137,43 @@ describe('upper and lower case utils', () => {
 
 describe('text transformations', () => {
   describe('utils#spongebob', () => {
+    const texts = [
+      'this is all lowercase',
+      'THIS IS ALL CAPS',
+      'This Is A Bit Psycho',
+      'tHIS iS tHREATENING',
+    ];
+
     it('mAkEs mOcKiNG StRiNGs', () => {
-      const texts = [
-        'this is all lowercase',
-        'THIS IS ALL CAPS',
-        'This Is A Bit Psycho',
-        'tHIS iS tHREATENING',
-      ];
       for (const text of texts) {
         const spongebobbed = utils.spongebob(text);
-
         expect(spongebobbed).toHaveLength(text.length);
         expect(spongebobbed.toLowerCase()).toStrictEqual(text.toLowerCase());
         expect(spongebobbed.toUpperCase()).toStrictEqual(text.toUpperCase());
 
-        // TODO: there's a VERY small chance this could be flaky
-        expect(text).not.toStrictEqual(spongebobbed);
+        // TODO: there's a VERY small chance this could be flaky if the string ends up the same
+        const originalHash = crypto
+          .createHash('sha256')
+          .update(text)
+          .digest('hex');
+        const spongebobHash = crypto
+          .createHash('sha256')
+          .update(spongebobbed)
+          .digest('hex');
+        expect(spongebobHash).not.toStrictEqual(originalHash);
+      }
+    });
 
-        // TODO (#22): there's a small chance that the following could be flaky, so theyre commented out
-        // const countLowerOriginal = utils.countLowerCase(text);
-        // const countLowerSpongebobbed = utils.countLowerCase(spongebobbed);
-        // const countUpperOriginal = utils.countUpperCase(text);
-        // const countUpperSpongebobbed = utils.countUpperCase(spongebobbed);
-        // expect(countLowerOriginal).not.toStrictEqual(countLowerSpongebobbed);
-        // expect(countUpperOriginal).not.toStrictEqual(countUpperSpongebobbed);
+    it('mAkEs dEtErMinIsTiC MocKeRY', () => {
+      for (const text of texts) {
+        // TODO: there's a VERY small chance this could be flaky if the string ends up the same
+        const deterministicMockery = utils.spongebob(text, true);
+        expect(text).not.toStrictEqual(deterministicMockery);
+        for (let i = 0; i < 5; ++i) {
+          expect(utils.spongebob(text, true)).toStrictEqual(
+            deterministicMockery,
+          );
+        }
       }
     });
   });

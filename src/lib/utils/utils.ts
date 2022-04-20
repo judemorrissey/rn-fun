@@ -1,5 +1,7 @@
 // utility functions and the like should go here
 
+import Prando from 'prando';
+
 const utils = {
   countLowerCase: function (str: string): number {
     return str
@@ -43,11 +45,16 @@ const utils = {
     );
   },
 
-  spongebob: function (text: string): string {
+  spongebob: function (text: string, deterministic: boolean = false): string {
+    let randomFunc = Math.random;
+    if (deterministic) {
+      const rng = new Prando(text);
+      randomFunc = () => rng.next();
+    }
     return text
       .split('')
       .map((char) =>
-        char.slice()[Math.random() > 0.5 ? 'toUpperCase' : 'toLowerCase'](),
+        char.slice()[randomFunc() > 0.5 ? 'toUpperCase' : 'toLowerCase'](),
       )
       .join('');
   },
