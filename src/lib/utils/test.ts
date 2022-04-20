@@ -125,10 +125,6 @@ describe('text transformations', () => {
       ];
       for (const text of texts) {
         const spongebobbed = utils.spongebob(text);
-        const countLowerOriginal = utils.countLowerCase(text);
-        const countLowerSpongebobbed = utils.countLowerCase(spongebobbed);
-        const countUpperOriginal = utils.countUpperCase(text);
-        const countUpperSpongebobbed = utils.countUpperCase(spongebobbed);
 
         expect(spongebobbed).toHaveLength(text.length);
         expect(spongebobbed.toLowerCase()).toStrictEqual(text.toLowerCase());
@@ -138,8 +134,12 @@ describe('text transformations', () => {
         expect(text).not.toStrictEqual(spongebobbed);
 
         // TODO (#22): there's a small chance that the following could be flaky, so theyre commented out
-        expect(countLowerOriginal).not.toStrictEqual(countLowerSpongebobbed);
-        expect(countUpperOriginal).not.toStrictEqual(countUpperSpongebobbed);
+        // const countLowerOriginal = utils.countLowerCase(text);
+        // const countLowerSpongebobbed = utils.countLowerCase(spongebobbed);
+        // const countUpperOriginal = utils.countUpperCase(text);
+        // const countUpperSpongebobbed = utils.countUpperCase(spongebobbed);
+        // expect(countLowerOriginal).not.toStrictEqual(countLowerSpongebobbed);
+        // expect(countUpperOriginal).not.toStrictEqual(countUpperSpongebobbed);
       }
     });
   });
