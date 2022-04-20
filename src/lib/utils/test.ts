@@ -4,6 +4,20 @@ describe('upper and lower case utils', () => {
   const alphabetLower = 'abcdefghijklmnopqrstuvwxyzåéæüøñôï';
   const alphabetUpper = alphabetLower.toUpperCase();
   const notAlphabetical = '!@#$%^&*(){}:"<>?=+-1234567890-=,./;\'"{}[]\\|';
+  const minLength = Math.min(
+    alphabetLower.length,
+    alphabetUpper.length,
+    notAlphabetical.length,
+  );
+  let chaos = '';
+  for (let i = 0; i < minLength; ++i) {
+    chaos += alphabetLower[i];
+    chaos += alphabetUpper[i];
+    chaos += notAlphabetical[i];
+  }
+  chaos += alphabetLower.slice(minLength);
+  chaos += alphabetUpper.slice(minLength);
+  chaos += notAlphabetical.slice(minLength);
 
   describe('utils#isAlphabetical', () => {
     it('works on single characters', () => {
@@ -22,6 +36,7 @@ describe('upper and lower case utils', () => {
       expect(utils.isAlphabetical(alphabetLower)).toStrictEqual(true);
       expect(utils.isAlphabetical(alphabetUpper)).toStrictEqual(true);
       expect(utils.isAlphabetical(notAlphabetical)).toStrictEqual(false);
+      expect(utils.isAlphabetical(chaos)).toStrictEqual(false);
     });
   });
 
@@ -44,6 +59,7 @@ describe('upper and lower case utils', () => {
       expect(utils.isLowerCaseAlphabetical(notAlphabetical)).toStrictEqual(
         false,
       );
+      expect(utils.isLowerCaseAlphabetical(chaos)).toStrictEqual(false);
     });
   });
 
@@ -66,6 +82,7 @@ describe('upper and lower case utils', () => {
       expect(utils.isUpperCaseAlphabetical(notAlphabetical)).toStrictEqual(
         false,
       );
+      expect(utils.isUpperCaseAlphabetical(chaos)).toStrictEqual(false);
     });
   });
 
@@ -88,6 +105,7 @@ describe('upper and lower case utils', () => {
       );
       expect(utils.countLowerCase(alphabetUpper)).toStrictEqual(0);
       expect(utils.countLowerCase(notAlphabetical)).toStrictEqual(0);
+      expect(utils.countLowerCase(chaos)).toStrictEqual(alphabetLower.length);
     });
   });
 
@@ -110,6 +128,7 @@ describe('upper and lower case utils', () => {
       );
       expect(utils.countUpperCase(alphabetLower)).toStrictEqual(0);
       expect(utils.countUpperCase(notAlphabetical)).toStrictEqual(0);
+      expect(utils.countUpperCase(chaos)).toStrictEqual(alphabetUpper.length);
     });
   });
 });

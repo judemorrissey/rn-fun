@@ -22,7 +22,9 @@ const utils = {
   },
 
   isAlphabetical: function (str: string): boolean {
-    return str.toLowerCase() !== str.toUpperCase();
+    return str
+      .split('')
+      .every((char) => char.toLowerCase() !== char.toUpperCase());
   },
 
   isLowerCaseAlphabetical: function (str: string): boolean {
