@@ -134,8 +134,10 @@ describe('text transformations', () => {
         expect(spongebobbed.toLowerCase()).toStrictEqual(text.toLowerCase());
         expect(spongebobbed.toUpperCase()).toStrictEqual(text.toUpperCase());
 
-        // TODO: there's a small chance that the following could be flaky
+        // TODO: there's a VERY small chance this could be flaky
         expect(text).not.toStrictEqual(spongebobbed);
+
+        // TODO (#22): there's a small chance that the following could be flaky, so theyre commented out
         expect(countLowerOriginal).not.toStrictEqual(countLowerSpongebobbed);
         expect(countUpperOriginal).not.toStrictEqual(countUpperSpongebobbed);
       }
