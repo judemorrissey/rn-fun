@@ -1,5 +1,8 @@
 # rn-fun
-React Native app development playground
+Hello friends! This is a React Native project that I, [@judemorrissey](https://github.com/judemorrissey), have started to hit a couple personal goals:
+- learn how to build a React Native app from scratch, as I've only worked on RN where the foundations have been laid out already
+- utilize this project as a framework for teaching/mentoring others who are interested in learning mobile app development using React Native
+- have a place to implement some of my ideas, and hopefully others would have a good space to do theirs too
 
 Initialized using the [React Native CLI Quickstart](https://reactnative.dev/docs/environment-setup) guide, initialized with the template `react-native-template-typescript` (be sure to install `@react-native-community/cli` to be able to use the template!)
 
@@ -9,6 +12,20 @@ AppIcons original 1024x1024 created using [GIMP](https://www.gimp.org/), and res
 
 ![RNFun Sample](https://user-images.githubusercontent.com/5974771/162132600-de1add9b-6464-47bb-9a4b-786fbf6e312b.png)
 
+# Contributing
+
+Please add a `YourNameHome` component under `src/screens/` and a corresponding `<Button />` in `Home.tsx`. Each collaborator has their own sub-homepage where they are free to implement whatever they want there so we do not clash with each other's work.
+
+Check [this PR](https://github.com/judemorrissey/rn-fun/pull/20/files) for an example of adding a home screen for yourself. (TODO: need to update the link to also show an example that adds a `test.tsx` file)
+
+Reusable components should go into `src/components`, and "navigable" screen components should go into `src/screens`. Please make a directory for your component under the appropriate directory and please name it in PascalCase. At bare minimum, please include the following four files:
+
+- `YourComponentName.tsx` - your actual component code goes here
+- `index.ts` - to enable `import YourComponentName from 'components/YourComponentName'` in lieu of `'components/YourComponentName/YourComponentName'`
+- `styles.ts`
+- `test.tsx`
+
+This project has some [VSCode](https://code.visualstudio.com/) niceties included such as recommended extensions and snippets for the four basic files listed above, hope that ends up being useful!
 
 # Quickstart
 
