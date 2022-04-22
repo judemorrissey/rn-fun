@@ -31,18 +31,22 @@ export default class Grid<ItemType> {
     }
   }
 
-  fill(value: ItemType) {
-    for (let i = 0; i < this.width; ++i) {
-      for (let j = 0; j < this.height; ++j) {
-        this.data[i][j] = value;
-      }
-    }
-  }
-
   *[Symbol.iterator]() {
     for (let i = 0; i < this.width; ++i) {
       for (let j = 0; j < this.height; ++j) {
         yield this.data[i][j];
+      }
+    }
+  }
+
+  private isCoordinateInRange(x: number, y: number) {
+    return x >= 0 && x < this.width && y >= 0 && y < this.height;
+  }
+
+  fill(value: ItemType) {
+    for (let i = 0; i < this.width; ++i) {
+      for (let j = 0; j < this.height; ++j) {
+        this.data[i][j] = value;
       }
     }
   }
@@ -56,14 +60,17 @@ export default class Grid<ItemType> {
   }
 
   get(x: number, y: number) {
-    return this.data[x]?.[y];
+    return this.isCoordinateInRange(x, y) ? this.data[x][y] : null;
   }
 
   getColumn(x: number) {
-    return this.data[x];
+    return this.isCoordinateInRange(x, 0) ? this.data[x] : null;
   }
 
   getRow(y: number) {
+    if (!this.isCoordinateInRange(0, y)) {
+      return null;
+    }
     const row = [];
     for (let i = 0; i < this.width; ++i) {
       row.push(this.data[i][y]);
@@ -72,10 +79,9 @@ export default class Grid<ItemType> {
   }
 
   set(x: number, y: number, value: ItemType): boolean {
-    if (x < 0 || x > this.width - 1 || y < 0 || y > this.height) {
+    if (!this.isCoordinateInRange(x, y)) {
       return false;
     }
-
     this.data[x][y] = value;
     return true;
   }
