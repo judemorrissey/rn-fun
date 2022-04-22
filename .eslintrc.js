@@ -57,6 +57,7 @@ module.exports = {
         'react/jsx-no-useless-fragment': ERROR,
         'react/jsx-sort-props': ERROR,
         'react/jsx-pascal-case': [ERROR],
+        'react/jsx-no-bind': ERROR,
         // various other rules outside of the template
         'curly': ERROR,
         'default-case': ERROR,
