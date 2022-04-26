@@ -2,6 +2,12 @@ import crypto from 'crypto';
 
 import Grid from './Grid';
 
+type PrimitiveItemType = number | string | boolean;
+type ItemType =
+  | PrimitiveItemType
+  | PrimitiveItemType[]
+  | {[key: string]: PrimitiveItemType};
+
 const getRandomInt = (includeZero: boolean) =>
   Math[includeZero ? 'floor' : 'ceil'](Math.random() * 100);
 
@@ -16,9 +22,38 @@ const getRandomBool = () => {
   return Math.random() > 0.5;
 };
 
-type ItemType = number | string | boolean;
+const getRandomPrimitiveValue = (): PrimitiveItemType => {
+  const rand = Math.random();
+  if (rand > 2 / 3) {
+    return getRandomInt(true);
+  } else if (rand > 1 / 3) {
+    return getRandomString();
+  }
+  return getRandomBool();
+};
+
+const getRandomObject = () => {
+  const numberKeyValuePairs = getRandomInt(true);
+  const obj: {[key: string]: PrimitiveItemType} = {};
+  for (let i = 0; i < numberKeyValuePairs; ++i) {
+    obj[getRandomString()] = getRandomPrimitiveValue();
+  }
+  return obj;
+};
+
+const getRandomArray = () => {
+  const numberElements = getRandomInt(true);
+  const arr: PrimitiveItemType[] = [];
+  for (let i = 0; i < numberElements; ++i) {
+    arr.push(getRandomPrimitiveValue());
+  }
+  return arr;
+};
 
 const getRandomValueForInitialValue = (initialValue: ItemType): ItemType => {
+  if (Array.isArray(initialValue)) {
+    return getRandomArray();
+  }
   switch (typeof initialValue) {
     case 'number':
       return getRandomInt(true);
@@ -26,6 +61,9 @@ const getRandomValueForInitialValue = (initialValue: ItemType): ItemType => {
       return getRandomString();
     case 'boolean':
       return getRandomBool();
+    // entering the danger zone here, lots of things are "object" type
+    case 'object':
+      return getRandomObject();
     default:
       throw new Error('Untested type encountered');
   }
@@ -130,7 +168,11 @@ const runGridTests = (initialValue: ItemType) => {
 };
 
 describe('Grid', () => {
-  [getRandomInt(true), getRandomString(), getRandomBool()].forEach(
-    (initialValue) => runGridTests(initialValue),
-  );
+  [
+    getRandomInt(true),
+    getRandomString(),
+    getRandomBool(),
+    getRandomObject(),
+    getRandomArray(),
+  ].forEach((initialValue) => runGridTests(initialValue));
 });
