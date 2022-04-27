@@ -70,7 +70,10 @@ const getRandomValueForInitialValue = (initialValue: ItemType): ItemType => {
 };
 
 const runGridTests = (initialValue: ItemType) => {
-  describe(`<${typeof initialValue}>`, () => {
+  const gridItemType = Array.isArray(initialValue)
+    ? 'Array'
+    : typeof initialValue;
+  describe(`<${gridItemType}>`, () => {
     let height: number;
     let width: number;
     let grid: Grid<ItemType>;
