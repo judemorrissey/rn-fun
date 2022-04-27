@@ -32,9 +32,13 @@ export default class Grid<ItemType> {
   }
 
   *[Symbol.iterator]() {
-    for (let i = 0; i < this.width; ++i) {
-      for (let j = 0; j < this.height; ++j) {
-        yield this.data[i][j];
+    for (let x = 0; x < this.width; ++x) {
+      for (let y = 0; y < this.height; ++y) {
+        yield {
+          value: this.data[x][y],
+          x,
+          y,
+        };
       }
     }
   }

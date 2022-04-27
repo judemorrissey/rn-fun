@@ -85,9 +85,9 @@ const runGridTests = (initialValue: ItemType) => {
     });
 
     it('gets filled with an initial value', () => {
-      expect([...grid].every((value) => value === initialValue)).toStrictEqual(
-        true,
-      );
+      expect(
+        [...grid].every(({value}) => value === initialValue),
+      ).toStrictEqual(true);
     });
 
     it('has getters for basic dimensions', () => {
@@ -125,7 +125,7 @@ const runGridTests = (initialValue: ItemType) => {
           true,
         );
         let countNewValue = 0;
-        for (const value of grid) {
+        for (const {value} of grid) {
           if (value === newValue) {
             ++countNewValue;
           }
@@ -149,7 +149,7 @@ const runGridTests = (initialValue: ItemType) => {
         row = grid.getRow(y);
         expect(row?.every((value) => value === newValue)).toStrictEqual(true);
         let countNewValue = 0;
-        for (const value of grid) {
+        for (const {value} of grid) {
           if (value === newValue) {
             ++countNewValue;
           }
@@ -162,7 +162,7 @@ const runGridTests = (initialValue: ItemType) => {
       it('fills the entire grid with an arbitrary value', () => {
         const newValue = getRandomValueForInitialValue(initialValue);
         grid.fill(newValue);
-        expect([...grid].every((value) => value === newValue)).toStrictEqual(
+        expect([...grid].every(({value}) => value === newValue)).toStrictEqual(
           true,
         );
       });
