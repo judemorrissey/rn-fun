@@ -3,12 +3,13 @@ import type {RootStackParams} from 'screens/types';
 
 import * as React from 'react';
 import {useCallback, useEffect, useState} from 'react';
-import {Text, View} from 'react-native';
+import {ScrollView, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import utils from 'lib/utils';
 
 import Button from 'components/Button';
+import WeatherWidget from 'components/WeatherWidget';
 
 import styles from './styles';
 
@@ -57,8 +58,11 @@ function Home() {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{headerText}</Text>
+    <ScrollView
+      contentContainerStyle={styles.contentContainer}
+      style={styles.container}>
+      <WeatherWidget style={styles.weatherWidget} />
+      <Text style={styles.headerText}>{headerText}</Text>
       <Button onPress={onPressJude} style={styles.button} title="Jude" />
       <Button
         onPress={onPressVeronica}
@@ -69,7 +73,7 @@ function Home() {
       <Button onPress={onPressKen} style={styles.button} title="Ken" />
       <Button onPress={onPressSema} style={styles.button} title="Sema" />
       <Button onPress={onPressBlaire} style={styles.button} title="Blaire" />
-    </View>
+    </ScrollView>
   );
 }
 

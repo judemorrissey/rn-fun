@@ -21,6 +21,7 @@ export default {
     characterTile: {
       default: palette.blueGray,
     },
+    weatherWidget: palette.blueGray,
   },
 
   text: {

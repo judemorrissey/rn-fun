@@ -7,7 +7,9 @@ import theme from 'lib/theme';
 type Styles = {
   button: ViewStyle;
   container: ViewStyle;
-  text: TextStyle;
+  contentContainer: ViewStyle;
+  headerText: TextStyle;
+  weatherWidget: ViewStyle;
 };
 
 export default StyleSheet.create<Styles>({
@@ -15,11 +17,17 @@ export default StyleSheet.create<Styles>({
     marginVertical: 8,
   },
   container: {
-    alignItems: 'center',
     backgroundColor: 'steelblue',
     flex: 1,
   },
-  text: {
+  contentContainer: {
+    alignItems: 'center',
+  },
+  headerText: {
+    ...theme.fonts[20],
     color: theme.colors.text.importance.veryHigh,
+  },
+  weatherWidget: {
+    margin: 8,
   },
 });
