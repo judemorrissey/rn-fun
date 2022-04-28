@@ -13,7 +13,9 @@ it('executes the onPress callback on the third press within a threshold', () => 
   const button = getByTestId('button');
 
   fireEvent.press(button);
+  expect(mockOnPress).not.toBeCalled();
   fireEvent.press(button);
+  expect(mockOnPress).not.toBeCalled();
   fireEvent.press(button);
   expect(mockOnPress).toBeCalledTimes(1);
 });
