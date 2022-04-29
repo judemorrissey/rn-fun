@@ -24,21 +24,21 @@ describe('upper and lower case utils', () => {
   describe('utils#isAlphabetical', () => {
     it('works on single characters', () => {
       for (const char of alphabetLower.split('')) {
-        expect(utils.isAlphabetical(char)).toStrictEqual(true);
+        expect(utils.isAllLetters(char)).toStrictEqual(true);
       }
       for (const char of alphabetUpper.split('')) {
-        expect(utils.isAlphabetical(char)).toStrictEqual(true);
+        expect(utils.isAllLetters(char)).toStrictEqual(true);
       }
       for (const char of notAlphabetical.split('')) {
-        expect(utils.isAlphabetical(char)).toStrictEqual(false);
+        expect(utils.isAllLetters(char)).toStrictEqual(false);
       }
     });
 
     it('works on multiple character strings', () => {
-      expect(utils.isAlphabetical(alphabetLower)).toStrictEqual(true);
-      expect(utils.isAlphabetical(alphabetUpper)).toStrictEqual(true);
-      expect(utils.isAlphabetical(notAlphabetical)).toStrictEqual(false);
-      expect(utils.isAlphabetical(chaos)).toStrictEqual(false);
+      expect(utils.isAllLetters(alphabetLower)).toStrictEqual(true);
+      expect(utils.isAllLetters(alphabetUpper)).toStrictEqual(true);
+      expect(utils.isAllLetters(notAlphabetical)).toStrictEqual(false);
+      expect(utils.isAllLetters(chaos)).toStrictEqual(false);
     });
   });
 

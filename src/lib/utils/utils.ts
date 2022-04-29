@@ -23,7 +23,7 @@ const utils = {
       );
   },
 
-  isAlphabetical: function (str: string): boolean {
+  isAllLetters: function (str: string): boolean {
     return str
       .split('')
       .every((char) => char.toLowerCase() !== char.toUpperCase());
@@ -31,7 +31,7 @@ const utils = {
 
   isLowerCaseAlphabetical: function (str: string): boolean {
     return (
-      utils.isAlphabetical(str) &&
+      utils.isAllLetters(str) &&
       str === str.toLowerCase() &&
       str !== str.toUpperCase()
     );
@@ -39,7 +39,7 @@ const utils = {
 
   isUpperCaseAlphabetical: function (str: string): boolean {
     return (
-      utils.isAlphabetical(str) &&
+      utils.isAllLetters(str) &&
       str === str.toUpperCase() &&
       str !== str.toLowerCase()
     );
