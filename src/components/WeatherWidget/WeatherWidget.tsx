@@ -1,50 +1,28 @@
-import type {ViewStyle} from 'react-native';
+import type {ListRenderItem, StyleProp, ViewStyle} from 'react-native';
+import type {WeatherDatum, WeatherResponse} from './types';
 
 import * as React from 'react';
 import {useCallback, useMemo, useState} from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  FlatList,
-  Linking,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Alert, FlatList, Linking, StyleSheet, Text, View} from 'react-native';
 
 import Button from 'components/Button';
 
+import WeatherTile from './_private/WeatherTile';
+
 import styles from './styles';
 
-type WeatherDatum = {
-  air_pressure: number;
-  applicable_date: Date;
-  created: Date;
-  humidity: number;
-  id: number;
-  max_temp: number;
-  min_temp: number;
-  predictability: number;
-  the_temp: number;
-  visibility: number;
-  weather_state_abbr: string;
-  weather_state_name: string;
-  wind_direction: number;
-  wind_direction_compass: string;
-  wind_speed: number;
-};
-
 type Props = {
-  buttonStyle?: ViewStyle;
-  style?: ViewStyle;
-  widgetStyle?: ViewStyle;
+  buttonStyle?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
+  widgetStyle?: StyleProp<ViewStyle>;
 };
 
 function WeatherWidget(props: Props) {
   const {buttonStyle, style, widgetStyle} = props;
 
   const [isRequestInFlight, setIsRequestInFlight] = useState(false);
-  const [weatherData, setWeatherData] = useState<JSON | null>(null);
+  const [weatherResponse, setWeatherResponse] =
+    useState<WeatherResponse | null>(null);
 
   const onPressGetWeather = useCallback(async () => {
     setIsRequestInFlight(true);
@@ -52,8 +30,8 @@ function WeatherWidget(props: Props) {
       const response = await fetch(
         'https://www.metaweather.com/api/location/2487956/',
       );
-      const json = await response.json();
-      setWeatherData(json);
+      const json: WeatherResponse = await response.json();
+      setWeatherResponse(json);
     } catch (err: unknown) {
       let message = '';
       if (typeof err === 'string') {
@@ -76,27 +54,24 @@ function WeatherWidget(props: Props) {
     Linking.openURL(metaWeatherUrl);
   }, []);
 
-  const keyExtractor = useCallback((item, index) => {
-    return item.id;
+  const keyExtractor = useCallback((item: WeatherDatum) => {
+    return String(item.id);
   }, []);
 
-  const renderWeatherItem = useCallback(({item, index}) => {
-    return (
-      <View>
-        <Text style={styles.widget.text}>{JSON.stringify(item, null, 2)}</Text>
-      </View>
-    );
-  }, []);
+  const renderWeatherItem: ListRenderItem<WeatherDatum> = useCallback(
+    ({item, index}) => {
+      return <WeatherTile datum={item} />;
+    },
+    [],
+  );
 
   const mainContent = useMemo(() => {
-    if (isRequestInFlight) {
-      return <ActivityIndicator />;
-    }
-    if (weatherData == null) {
+    if (weatherResponse == null) {
       return (
         <View style={StyleSheet.compose(styles.button.container, buttonStyle)}>
           <Button
             onPress={onPressGetWeather}
+            showActivityIndicator={isRequestInFlight}
             title="What's the weather in San Francisco?"
           />
         </View>
@@ -105,7 +80,7 @@ function WeatherWidget(props: Props) {
     return (
       <View style={StyleSheet.compose(styles.widget.container, widgetStyle)}>
         <FlatList
-          data={weatherData.consolidated_weather}
+          data={weatherResponse.consolidated_weather}
           horizontal={true}
           keyExtractor={keyExtractor}
           renderItem={renderWeatherItem}
@@ -127,7 +102,7 @@ function WeatherWidget(props: Props) {
     onPressGetWeather,
     onPressPoweredBy,
     renderWeatherItem,
-    weatherData,
+    weatherResponse,
     widgetStyle,
   ]);
 

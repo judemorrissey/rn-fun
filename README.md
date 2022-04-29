@@ -25,6 +25,11 @@ Reusable components should go into `src/components`, and "navigable" screen comp
 - `styles.ts`
 - `test.tsx`
 
+If your component is sufficiently more complex, consider the following:
+- any sub-components that are specific to your component should follow the conventions above under a directory named `_private_` e.g. `components/MyComponent/_private/MySubComponent/*`
+- if your component's states are sufficiently complex, consider adding a `reducer.ts` file for use with `useReducer`
+- any custom types other than the `type Props = {...}` of component files should be exported from a `types.ts` file
+
 This project has some [VSCode](https://code.visualstudio.com/) niceties included such as recommended extensions and snippets for the four basic files listed above, hope that ends up being useful!
 
 # Quickstart
