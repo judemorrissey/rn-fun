@@ -6,15 +6,31 @@ import theme from 'lib/theme';
 
 type Styles = {
   container: ViewStyle;
-  text: TextStyle;
+  dayText: TextStyle;
+  detailsLabelText: TextStyle;
+  detailsText: TextStyle;
   weatherImage: ImageStyle;
 };
 
 export default StyleSheet.create<Styles>({
   container: {
-    flex: 1,
+    backgroundColor: theme.colors.backgrounds.weatherWidget.tile,
+    borderRadius: 16,
+    margin: 4,
+    padding: 12,
   },
-  text: {
+  dayText: {
+    ...theme.fonts[20],
+    color: theme.colors.text.importance.veryHigh,
+    fontWeight: theme.fontWeights.semiBold,
+  },
+  detailsLabelText: {
+    ...theme.fonts[14],
+    color: theme.colors.text.importance.veryHigh,
+    fontWeight: theme.fontWeights.semiBold,
+  },
+  detailsText: {
+    ...theme.fonts[14],
     color: theme.colors.text.importance.veryHigh,
   },
   weatherImage: {

@@ -60,7 +60,7 @@ function WeatherWidget(props: Props) {
 
   const renderWeatherItem: ListRenderItem<WeatherDatum> = useCallback(
     ({item, index}) => {
-      return <WeatherTile datum={item} />;
+      return <WeatherTile datum={item} style={styles.widget.tile} />;
     },
     [],
   );
@@ -80,10 +80,12 @@ function WeatherWidget(props: Props) {
     return (
       <View style={StyleSheet.compose(styles.widget.container, widgetStyle)}>
         <FlatList
+          contentContainerStyle={styles.widget.tilesContainer}
           data={weatherResponse.consolidated_weather}
           horizontal={true}
           keyExtractor={keyExtractor}
           renderItem={renderWeatherItem}
+          showsHorizontalScrollIndicator={false}
         />
         <View style={styles.widget.poweredByContainer}>
           <Text style={styles.widget.text}>

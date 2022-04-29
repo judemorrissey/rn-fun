@@ -58,9 +58,7 @@ function Home() {
   }, [navigation]);
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.contentContainer}
-      style={styles.container}>
+    <ScrollView style={styles.container}>
       <WeatherWidget style={styles.weatherWidget} />
       <Text style={styles.headerText}>{headerText}</Text>
       <Button onPress={onPressJude} style={styles.button} title="Jude" />
