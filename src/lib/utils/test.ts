@@ -21,7 +21,7 @@ describe('upper and lower case utils', () => {
   chaos += alphabetUpper.slice(minLength);
   chaos += notAlphabetical.slice(minLength);
 
-  describe('utils#isAlphabetical', () => {
+  describe('utils#isAllLetters', () => {
     it('works on single characters', () => {
       for (const char of alphabetLower.split('')) {
         expect(utils.isAllLetters(char)).toStrictEqual(true);
