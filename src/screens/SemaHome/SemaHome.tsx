@@ -17,31 +17,99 @@ function SemaHome(props: Props) {
       </View>
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonsRowContainer}>
-          <Button style={styles.button} title="/" />
+          <Button
+            style={styles.button}
+            title="/"
+            titleStyle={styles.buttonText}
+          />
         </View>
         <View style={styles.buttonsRowContainer}>
-          <Button style={styles.button} title="7" />
-          <Button style={styles.button} title="8" />
-          <Button style={styles.button} title="9" />
-          <Button style={styles.button} title="x" />
+          <Button
+            style={styles.button}
+            title="7"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="8"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="9"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="x"
+            titleStyle={styles.buttonText}
+          />
         </View>
         <View style={styles.buttonsRowContainer}>
-          <Button style={styles.button} title="4" />
-          <Button style={styles.button} title="5" />
-          <Button style={styles.button} title="6" />
-          <Button style={styles.button} title="-" />
+          <Button
+            style={styles.button}
+            title="4"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="5"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="6"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="-"
+            titleStyle={styles.buttonText}
+          />
         </View>
         <View style={styles.buttonsRowContainer}>
-          <Button style={styles.button} title="1" />
-          <Button style={styles.button} title="2" />
-          <Button style={styles.button} title="3" />
-          <Button style={styles.button} title="+" />
+          <Button
+            style={styles.button}
+            title="1"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="2"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="3"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="+"
+            titleStyle={styles.buttonText}
+          />
         </View>
         <View style={styles.buttonsRowContainer}>
-          <Button style={styles.button} title="0" />
-          <Button style={styles.button} title="00" />
-          <Button style={styles.button} title="." />
-          <Button style={styles.button} title="=" />
+          <Button
+            style={styles.button}
+            title="0"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="00"
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="."
+            titleStyle={styles.buttonText}
+          />
+          <Button
+            style={styles.button}
+            title="="
+            titleStyle={styles.buttonText}
+          />
         </View>
       </View>
     </View>

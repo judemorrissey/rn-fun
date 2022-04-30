@@ -6,6 +6,7 @@ import theme from 'lib/theme';
 
 type Styles = {
   button: ViewStyle;
+  buttonText: TextStyle;
   buttonsContainer: ViewStyle;
   buttonsRowContainer: ViewStyle;
   container: ViewStyle;
@@ -17,6 +18,9 @@ export default StyleSheet.create<Styles>({
   button: {
     flex: 1,
     marginHorizontal: 4,
+  },
+  buttonText: {
+    ...theme.fonts[32],
   },
   buttonsContainer: {
     flex: 1,

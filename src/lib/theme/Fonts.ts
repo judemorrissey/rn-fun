@@ -26,6 +26,9 @@ const fonts: {[index: number]: TextStyle} = {
   '20': {
     fontSize: 20,
   },
+  '32': {
+    fontSize: 32,
+  },
 } as const;
 
 export default fonts;
