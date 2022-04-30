@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useCallback} from 'react';
 import {Text, View} from 'react-native';
 
 import styles from './styles';
@@ -10,6 +11,10 @@ type Props = {};
 const outputText = '1234';
 
 function SemaHome(props: Props) {
+  const onPress9 = useCallback(() => {
+    console.log(9);
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.outputContainer}>
@@ -35,6 +40,7 @@ function SemaHome(props: Props) {
             titleStyle={styles.buttonText}
           />
           <Button
+            onPress={onPress9}
             style={styles.button}
             title="9"
             titleStyle={styles.buttonText}
