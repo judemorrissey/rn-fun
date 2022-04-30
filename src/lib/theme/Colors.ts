@@ -26,6 +26,7 @@ export default {
   text: {
     importance: {
       veryHigh: palette.white,
+      veryHighDark: palette.black,
     },
   },
 };
