@@ -3,6 +3,16 @@
 import Prando from 'prando';
 
 const utils = {
+  convertCelsiusToFahrenheit: function (celsius: number): number {
+    // semamamama please fill this in
+    return 0;
+  },
+
+  convertFahrenheitToCelsius: function (fahrenheit: number): number {
+    // semamamama please fill this in
+    return 0;
+  },
+
   countLowerCase: function (str: string): number {
     return str
       .split('')
