@@ -24,10 +24,10 @@ export default StyleSheet.create<Styles>({
     backgroundColor: 'beige',
     borderWidth: 5,
     flex: 1,
-    marginTop: 20,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginTop: 20,
   },
   image: {
     height: 50,

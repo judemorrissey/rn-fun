@@ -1,10 +1,13 @@
+import type {ImageSourcePropType} from 'react-native';
+
 import * as React from 'react';
 import {useCallback, useEffect, useState} from 'react';
 import {Linking, Text, View} from 'react-native';
 import Button from 'components/Button';
 
+import SingleCard from './_private/SingleCard';
+
 import styles from './styles';
-import SingleCard from './SingleCard';
 
 const blue = require('./assets/blue.png');
 const red = require('./assets/red.png');
@@ -13,7 +16,12 @@ const green = require('./assets/green.png');
 const yellow = require('./assets/yellow.png');
 const purple = require('./assets/purple.png');
 
-const cardImages = [
+type Card = {
+  id?: number;
+  src: ImageSourcePropType;
+};
+
+const cardImages: Card[] = [
   {src: blue},
   {src: red},
   {src: orange},
@@ -25,10 +33,10 @@ const cardImages = [
 type Props = {};
 
 function BlaireHome(props: Props) {
-  const [cards, setCards] = useState<any[]>([]);
+  const [cards, setCards] = useState<Card[]>([]);
   const [turns, setTurns] = useState<number>(0);
-  const [choiceOne, setChoiceOne] = useState<any>(null);
-  const [choiceTwo, setChoiceTwo] = useState<any>(null);
+  const [choiceOne, setChoiceOne] = useState<Card | null>(null);
+  const [choiceTwo, setChoiceTwo] = useState<Card | null>(null);
 
   const shuffleCards = useCallback(() => {
     const shuffledCards = [...cardImages, ...cardImages]
@@ -39,10 +47,13 @@ function BlaireHome(props: Props) {
     setTurns(0);
   }, []);
 
-  const handleChoice = useCallback((card) => {
-    console.log(`choice 1: ${choiceOne} choice 1: ${choiceTwo}`);
-    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
-  }, []);
+  const onPressCard = useCallback(
+    (card) => () => {
+      console.log(`choice 1: ${choiceOne} choice 2: ${choiceTwo}`);
+      choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+    },
+    [choiceOne, choiceTwo],
+  );
 
   const resetChoices = useCallback(() => {
     console.log('resetting choices');
@@ -64,11 +75,12 @@ function BlaireHome(props: Props) {
     } else {
       console.log('both choices are null');
     }
-  }, [choiceOne, choiceTwo]);
+  }, [choiceOne, choiceTwo, resetChoices]);
 
   const onPress = useCallback(() => {
     Linking.openURL('https://dintaifungusa.com/');
   }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{`B L A I R E`}</Text>
@@ -76,7 +88,11 @@ function BlaireHome(props: Props) {
       <Button onPress={shuffleCards} title="New Game" />
       <View style={styles.gameContainer}>
         {cards.map((card) => (
-          <SingleCard card={card} handleChoice={handleChoice} key={card.id} />
+          <SingleCard
+            cardImageSource={card.src}
+            key={card.id}
+            onPress={onPressCard(card)}
+          />
         ))}
       </View>
     </View>
