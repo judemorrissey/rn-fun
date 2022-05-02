@@ -9,26 +9,20 @@ import SingleCard from './_private/SingleCard';
 
 import styles from './styles';
 
-const blue = require('./assets/blue.png');
-const red = require('./assets/red.png');
-const orange = require('./assets/orange.png');
-const green = require('./assets/green.png');
-const yellow = require('./assets/yellow.png');
-const purple = require('./assets/purple.png');
+const cardImages: Card[] = [
+  {src: require('./assets/blue.png'), matched: false},
+  {src: require('./assets/red.png'), matched: false},
+  {src: require('./assets/orange.png'), matched: false},
+  {src: require('./assets/green.png'), matched: false},
+  {src: require('./assets/yellow.png'), matched: false},
+  {src: require('./assets/purple.png'), matched: false},
+];
 
 type Card = {
   id?: number;
   src: ImageSourcePropType;
+  matched: boolean;
 };
-
-const cardImages: Card[] = [
-  {src: blue},
-  {src: red},
-  {src: orange},
-  {src: green},
-  {src: yellow},
-  {src: purple},
-];
 
 type Props = {};
 
@@ -49,14 +43,12 @@ function BlaireHome(props: Props) {
 
   const onPressCard = useCallback(
     (card) => () => {
-      console.log(`choice 1: ${choiceOne} choice 2: ${choiceTwo}`);
       choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
     },
     [choiceOne, choiceTwo],
   );
 
   const resetChoices = useCallback(() => {
-    console.log('resetting choices');
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prevTurns) => prevTurns + 1);
@@ -64,18 +56,25 @@ function BlaireHome(props: Props) {
 
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      console.log('we have both choices');
       if (choiceOne.src === choiceTwo.src) {
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.src === choiceOne.src) {
+              return {...card, matched: true};
+            }
+            return card;
+          });
+        });
         console.log('we have a match!');
         resetChoices();
       } else {
         console.log('cards do not match');
         resetChoices();
       }
-    } else {
-      console.log('both choices are null');
     }
   }, [choiceOne, choiceTwo, resetChoices]);
+
+  console.log(cards);
 
   const onPress = useCallback(() => {
     Linking.openURL('https://dintaifungusa.com/');
@@ -90,6 +89,7 @@ function BlaireHome(props: Props) {
         {cards.map((card) => (
           <SingleCard
             cardImageSource={card.src}
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
             key={card.id}
             onPress={onPressCard(card)}
           />
