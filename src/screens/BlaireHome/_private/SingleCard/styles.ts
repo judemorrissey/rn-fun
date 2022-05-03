@@ -14,27 +14,26 @@ type Styles = {
 };
 
 export default StyleSheet.create<Styles>({
+  card: {
+    position: 'relative',
+  },
   container: {
     flex: 1,
+  },
+  flipped: {
+    transform: [{rotateY: '0deg'}],
+  },
+  image: {
+    borderColor: 'white',
+    borderWidth: 1,
+    height: 90,
+    width: 90,
   },
   text: {
     color: theme.colors.text.importance.veryHigh,
   },
-  image: {
-    height: 50,
-    width: 50,
-    borderWidth: 2,
-    borderColor: 'white',
-  },
-  card: {
-    position: 'relative',
-  },
   unflipped: {
-    transform: [{rotateY: '90deg'}],
-    // position: 'absolute',
     display: 'none',
-  },
-  flipped: {
-    transform: [{rotateY: '0deg'}],
+    transform: [{rotateY: '90deg'}],
   },
 });

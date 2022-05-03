@@ -1,13 +1,17 @@
 import type {ImageSourcePropType} from 'react-native';
-
 import * as React from 'react';
 import {useCallback, useEffect, useState} from 'react';
-import {Linking, Text, View} from 'react-native';
+import {Dimensions, FlatList, Linking, Text, View} from 'react-native';
 import Button from 'components/Button';
 
 import SingleCard from './_private/SingleCard';
 
-import styles from './styles';
+import {styles} from './styles';
+
+// const dataList = [{key: '1'}, {key: '2'}, {key: '3'}, {key: '4'}];
+
+const numCols = 4;
+const WIDTH = Dimensions.get('screen').width;
 
 const cardImages: Card[] = [
   {src: require('./assets/blue.png'), matched: false},
@@ -65,20 +69,29 @@ function BlaireHome(props: Props) {
             return card;
           });
         });
-        console.log('we have a match!');
         resetChoices();
       } else {
-        console.log('cards do not match');
         resetChoices();
       }
     }
   }, [choiceOne, choiceTwo, resetChoices]);
 
-  console.log(cards);
-
   const onPress = useCallback(() => {
     Linking.openURL('https://dintaifungusa.com/');
   }, []);
+
+  const renderItem = ({item, index}) => {
+    return (
+      <View style={styles(WIDTH, numCols).item}>
+        <SingleCard
+          cardImageSource={item.src}
+          flipped={item === choiceOne || item === choiceTwo || item.matched}
+          key={item.id}
+          onPress={onPressCard(item)}
+        />
+      </View>
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -86,14 +99,14 @@ function BlaireHome(props: Props) {
       <Button onPress={onPress} title="Press me" />
       <Button onPress={shuffleCards} title="New Game" />
       <View style={styles.gameContainer}>
-        {cards.map((card) => (
-          <SingleCard
-            cardImageSource={card.src}
-            flipped={card === choiceOne || card === choiceTwo || card.matched}
-            key={card.id}
-            onPress={onPressCard(card)}
+        <View>
+          <FlatList
+            data={cards}
+            keyExtractor={(item, index) => index.toString()}
+            numColumns={numCols}
+            renderItem={renderItem}
           />
-        ))}
+        </View>
       </View>
     </View>
   );
