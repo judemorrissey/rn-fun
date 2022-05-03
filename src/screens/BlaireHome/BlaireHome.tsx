@@ -1,17 +1,12 @@
 import type {ImageSourcePropType} from 'react-native';
 import * as React from 'react';
 import {useCallback, useEffect, useState} from 'react';
-import {Dimensions, FlatList, Linking, Text, View} from 'react-native';
+import {FlatList, Linking, Text, View} from 'react-native';
 import Button from 'components/Button';
-
 import SingleCard from './_private/SingleCard';
-
-import {styles} from './styles';
-
-// const dataList = [{key: '1'}, {key: '2'}, {key: '3'}, {key: '4'}];
+import styles from './styles';
 
 const numCols = 4;
-const WIDTH = Dimensions.get('screen').width;
 
 const cardImages: Card[] = [
   {src: require('./assets/blue.png'), matched: false},
@@ -82,32 +77,31 @@ function BlaireHome(props: Props) {
 
   const renderItem = ({item, index}) => {
     return (
-      <View style={styles(WIDTH, numCols).item}>
-        <SingleCard
-          cardImageSource={item.src}
-          flipped={item === choiceOne || item === choiceTwo || item.matched}
-          key={item.id}
-          onPress={onPressCard(item)}
-        />
-      </View>
+      <SingleCard
+        cardImageSource={item.src}
+        flipped={item === choiceOne || item === choiceTwo || item.matched}
+        key={item.id}
+        onPress={onPressCard(item)}
+      />
     );
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{`B L A I R E`}</Text>
-      <Button onPress={onPress} title="Press me" />
-      <Button onPress={shuffleCards} title="New Game" />
-      <View style={styles.gameContainer}>
-        <View>
-          <FlatList
-            data={cards}
-            keyExtractor={(item, index) => index.toString()}
-            numColumns={numCols}
-            renderItem={renderItem}
-          />
-        </View>
-      </View>
+      <Button onPress={onPress} style={{marginTop: 20}} title="Press me" />
+      <Button
+        onPress={shuffleCards}
+        style={{marginTop: 20, marginBottom: 20}}
+        title="New Game"
+      />
+      <Text style={styles.text}>{`Turns: ${turns}`}</Text>
+      <FlatList
+        data={cards}
+        keyExtractor={(item, index) => index.toString()}
+        numColumns={numCols}
+        renderItem={renderItem}
+      />
     </View>
   );
 }

@@ -1,10 +1,13 @@
 import * as React from 'react';
 import {useCallback} from 'react';
 import type {ImageSourcePropType} from 'react-native';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {Dimensions, Image, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 
 const coverImage = require('screens/BlaireHome/assets/cover.png');
+
+const numCols = 4;
+const WIDTH = Dimensions.get('screen').width;
 
 type Props = {
   cardImageSource: ImageSourcePropType;
@@ -21,7 +24,7 @@ function SingleCard(props: Props) {
 
   return (
     <View>
-      <View style={styles.card}>
+      <View style={[styles.card, {height: WIDTH / numCols}]}>
         <View>
           <Image
             source={cardImageSource}

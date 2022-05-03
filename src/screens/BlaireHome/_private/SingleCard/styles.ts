@@ -5,7 +5,6 @@ import {StyleSheet} from 'react-native';
 import theme from 'lib/theme';
 
 type Styles = {
-  container: ViewStyle;
   text: TextStyle;
   card: ViewStyle;
   image: ImageStyle;
@@ -15,10 +14,10 @@ type Styles = {
 
 export default StyleSheet.create<Styles>({
   card: {
-    position: 'relative',
-  },
-  container: {
+    alignItems: 'center',
     flex: 1,
+    justifyContent: 'center',
+    position: 'relative',
   },
   flipped: {
     transform: [{rotateY: '0deg'}],
