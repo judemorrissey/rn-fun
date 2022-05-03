@@ -7,6 +7,9 @@ const config: Config.InitialOptions = {
     './node_modules/react-native-gesture-handler/jestSetup.js',
     './src/jest/setup.ts',
   ],
+  transformIgnorePatterns: [
+    'node_modules/(?!((jest-)?react-native(-.*)?|@react-native(-community)?)/)',
+  ],
   verbose: true,
 };
 
