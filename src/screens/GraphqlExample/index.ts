@@ -1,3 +1,6 @@
 import GraphqlExample from './GraphqlExample';
+import Wrapper from './Wrapper';
 
-export default GraphqlExample;
+export {GraphqlExample};
+
+export default Wrapper;

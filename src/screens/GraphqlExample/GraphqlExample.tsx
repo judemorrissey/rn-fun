@@ -1,64 +1,65 @@
+import type {ListRenderItem} from 'react-native';
+import type {PokemonQuery} from './gql';
+
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {useCallback} from 'react';
+import {ActivityIndicator, FlatList, Text, View} from 'react-native';
+import {useQuery} from '@apollo/client';
 
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-  gql,
-  useQuery,
-} from '@apollo/client';
+import utils from 'lib/utils';
 
+import {ALL_POKEMON_QUERY} from './gql';
 import styles from './styles';
 
 type Props = {};
 
-const POKEAPI_GQL_CLIENT = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: 'https://beta.pokeapi.co/graphql/v1beta',
-});
+function ItemSeparator() {
+  return <View style={styles.itemSeparator} />;
+}
 
-const QUERY = gql`
-  query samplePokeAPIquery {
-    # Gets all the pokemon belonging to generation 3
-    gen3_species: pokemon_v2_pokemonspecies(
-      where: {pokemon_v2_generation: {name: {_eq: "generation-iii"}}}
-      order_by: {id: asc}
-    ) {
-      name
-      id
-      evolves_from_species_id
-    }
-    # You can run multiple queries at the same time
-    # Counts how many pokemon were released for each generation
-    generations: pokemon_v2_generation {
-      name
-      pokemon_species: pokemon_v2_pokemonspecies_aggregate {
-        aggregate {
-          count
-        }
-      }
-    }
-  }
-`;
+export function GraphqlExample(props: Props) {
+  const {data, loading} = useQuery<PokemonQuery>(ALL_POKEMON_QUERY);
 
-function GraphqlExample(props: Props) {
-  const {data} = useQuery(QUERY);
-  console.log(data);
+  const keyExtractor = useCallback((item, index) => {
+    return String(item.id);
+  }, []);
+
+  const renderItem: ListRenderItem<PokemonQuery['all_pokemon'][number]> =
+    useCallback(({item}) => {
+      return (
+        <View style={styles.itemContainer}>
+          <Text style={styles.heading}>{utils.capitalize(item.name)}</Text>
+          <Text>
+            <Text style={styles.label}>{`National Dex #: `}</Text>
+            <Text style={styles.text}>{item.id}</Text>
+          </Text>
+          <Text>
+            <Text style={styles.label}>{`Evolution Chain: `}</Text>
+            <Text style={styles.text}>
+              {item.pokemon_v2_evolutionchain.pokemon_v2_pokemonspecies
+                .map((pokemon) => utils.capitalize(pokemon.name))
+                .join(' -> ')}
+            </Text>
+          </Text>
+        </View>
+      );
+    }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{`T O D O`}</Text>
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        <FlatList
+          ItemSeparatorComponent={ItemSeparator}
+          contentContainerStyle={styles.contentContainer}
+          data={data?.all_pokemon ?? []}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+        />
+      )}
     </View>
   );
 }
 
-function ApolloWrapper(props: Props) {
-  return (
-    <ApolloProvider client={POKEAPI_GQL_CLIENT}>
-      <GraphqlExample {...props} />
-    </ApolloProvider>
-  );
-}
-
-export default ApolloWrapper;
+export default GraphqlExample;
