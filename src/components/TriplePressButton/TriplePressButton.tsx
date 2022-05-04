@@ -71,7 +71,7 @@ function TriplePressButton(props: Props) {
         clearTimeout(timeoutId);
       }
     };
-  }, [countdown]);
+  }, [countdown, rotation]);
 
   const internalOnPress = useCallback(() => {
     if (countdown !== 1) {

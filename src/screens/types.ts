@@ -6,4 +6,5 @@ export type RootStackParams = {
   VeronicaHome: undefined;
   SemaHome: undefined;
   BlaireHome: undefined;
+  GraphqlExample: undefined;
 };
