@@ -5,11 +5,13 @@ import Prando from 'prando';
 const utils = {
   convertCelsiusToFahrenheit: function (celsius: number): number {
     // semamamama please fill this in
+    (celsius * 9) / 5 + 32;
     return 0;
   },
 
   convertFahrenheitToCelsius: function (fahrenheit: number): number {
     // semamamama please fill this in
+    ((fahrenheit - 32) * 5) / 9;
     return 0;
   },
 
