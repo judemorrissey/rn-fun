@@ -177,4 +177,34 @@ describe('text transformations', () => {
       }
     });
   });
+
+  describe('unit conversions', () => {
+    const celciusFahrenheitTuples: [number, number][] = [
+      [0, 32], // freezing point of water
+      [100, 212], // boiling point of water
+      [24, 75], // room temperature (Jude approved™)
+    ];
+
+    describe('utils#convertCelsiusToFahrenheit', () => {
+      it('converts from celsius to fahrenheit', () => {
+        for (const [celsius, fahrenheit] of celciusFahrenheitTuples) {
+          const converted = Math.round(
+            utils.convertCelsiusToFahrenheit(celsius),
+          );
+          expect(converted).toStrictEqual(fahrenheit);
+        }
+      });
+    });
+
+    describe('utils#convertFahrenheitToCelsius', () => {
+      it('converts from fahrenheit to celsius', () => {
+        for (const [celsius, fahrenheit] of celciusFahrenheitTuples) {
+          const converted = Math.round(
+            utils.convertFahrenheitToCelsius(fahrenheit),
+          );
+          expect(converted).toStrictEqual(celsius);
+        }
+      });
+    });
+  });
 });
