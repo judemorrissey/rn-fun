@@ -2,18 +2,21 @@ import type {StyleProp, ViewStyle} from 'react-native';
 import type {WeatherDatum} from 'components/WeatherWidget/types';
 
 import * as React from 'react';
-import {useMemo} from 'react';
+import {useCallback, useMemo} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
+
+import utils from 'lib/utils';
 
 import styles from './styles';
 
 type Props = {
   datum: WeatherDatum;
+  isCelsius?: boolean;
   style?: StyleProp<ViewStyle>;
 };
 
 function WeatherTile(props: Props) {
-  const {datum, style} = props;
+  const {datum, isCelsius = false, style} = props;
 
   const weatherImageUri = useMemo(() => {
     // see docs at https://www.metaweather.com/api/
@@ -29,6 +32,16 @@ function WeatherTile(props: Props) {
     }).format(date);
   }, [datum.applicable_date]);
 
+  const getTemperatureString = useCallback(
+    (tempInC: number) => {
+      if (isCelsius) {
+        return `${Math.round(tempInC)} °C`;
+      }
+      return `${Math.round(utils.convertCelsiusToFahrenheit(tempInC))} °F`;
+    },
+    [isCelsius],
+  );
+
   return (
     <View style={StyleSheet.compose(styles.container, style)}>
       <Text style={styles.dayText}>{formattedDayDate}</Text>
@@ -39,14 +52,14 @@ function WeatherTile(props: Props) {
         style={styles.weatherImage}
       />
       <Text style={styles.detailsText}>
-        {`Temperature: ${Math.round(datum.the_temp)} °C`}
+        {`Temperature: ${getTemperatureString(datum.the_temp)}`}
       </Text>
       <Text style={styles.detailsText}>
-        {`High: ${Math.round(datum.max_temp)} °C`}
+        {`High: ${getTemperatureString(datum.max_temp)}`}
       </Text>
-      <Text style={styles.detailsText}>{`Low: ${Math.round(
+      <Text style={styles.detailsText}>{`Low: ${getTemperatureString(
         datum.min_temp,
-      )} °C`}</Text>
+      )}`}</Text>
       <Text style={styles.detailsText}>{`Wind: ${
         datum.wind_direction_compass
       } ${Math.round(datum.wind_speed)}mph`}</Text>

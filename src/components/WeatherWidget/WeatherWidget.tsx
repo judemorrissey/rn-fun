@@ -23,6 +23,7 @@ function WeatherWidget(props: Props) {
   const [isRequestInFlight, setIsRequestInFlight] = useState(false);
   const [weatherResponse, setWeatherResponse] =
     useState<WeatherResponse | null>(null);
+  const [isCelsius, setIsCelsius] = useState(false);
 
   const onPressGetWeather = useCallback(async () => {
     setIsRequestInFlight(true);
@@ -45,6 +46,10 @@ function WeatherWidget(props: Props) {
     }
   }, []);
 
+  const onPressTemperatureUnit = useCallback(() => {
+    setIsCelsius((prevValue) => !prevValue);
+  }, []);
+
   const onPressPoweredBy = useCallback(() => {
     const metaWeatherUrl = 'https://www.metaweather.com';
     const canOpen = Linking.canOpenURL(metaWeatherUrl);
@@ -60,9 +65,15 @@ function WeatherWidget(props: Props) {
 
   const renderWeatherItem: ListRenderItem<WeatherDatum> = useCallback(
     ({item, index}) => {
-      return <WeatherTile datum={item} style={styles.widget.tile} />;
+      return (
+        <WeatherTile
+          datum={item}
+          isCelsius={isCelsius}
+          style={styles.widget.tile}
+        />
+      );
     },
-    [],
+    [isCelsius],
   );
 
   const mainContent = useMemo(() => {
@@ -87,22 +98,30 @@ function WeatherWidget(props: Props) {
           renderItem={renderWeatherItem}
           showsHorizontalScrollIndicator={false}
         />
-        <View style={styles.widget.poweredByContainer}>
-          <Text style={styles.widget.text}>
-            <Text>{`Powered by `}</Text>
-            <Text
-              onPress={onPressPoweredBy}
-              style={styles.widget.linkText}>{`MetaWeather`}</Text>
-          </Text>
+        <View style={styles.widget.bottomRow}>
+          <Button
+            onPress={onPressTemperatureUnit}
+            title={isCelsius ? '°C' : '°F'}
+          />
+          <View style={styles.widget.poweredByContainer}>
+            <Text style={styles.widget.text}>
+              <Text>{`Powered by `}</Text>
+              <Text
+                onPress={onPressPoweredBy}
+                style={styles.widget.linkText}>{`MetaWeather`}</Text>
+            </Text>
+          </View>
         </View>
       </View>
     );
   }, [
     buttonStyle,
+    isCelsius,
     isRequestInFlight,
     keyExtractor,
     onPressGetWeather,
     onPressPoweredBy,
+    onPressTemperatureUnit,
     renderWeatherItem,
     weatherResponse,
     widgetStyle,

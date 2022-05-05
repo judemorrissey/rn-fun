@@ -9,6 +9,7 @@ type Styles = {
     container: ViewStyle;
   };
   widget: {
+    bottomRow: ViewStyle;
     container: ViewStyle;
     linkText: TextStyle;
     poweredByContainer: ViewStyle;
@@ -25,6 +26,13 @@ export default {
     },
   }),
   widget: StyleSheet.create<Styles['widget']>({
+    bottomRow: {
+      alignItems: 'flex-end',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginTop: 8,
+      paddingHorizontal: 8,
+    },
     container: {
       backgroundColor: theme.colors.backgrounds.weatherWidget.container,
       borderRadius: 16,
@@ -35,8 +43,6 @@ export default {
     },
     poweredByContainer: {
       alignItems: 'flex-end',
-      marginRight: 8,
-      marginTop: 8,
     },
     text: {
       color: theme.colors.text.importance.veryHigh,

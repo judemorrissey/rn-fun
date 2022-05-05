@@ -8,7 +8,7 @@ export type WeatherDatum = {
   max_temp: number;
   min_temp: number;
   predictability: number;
-  the_temp: number;
+  the_temp: number; // in celsius
   visibility: number;
   weather_state_abbr: string;
   weather_state_name: string;
