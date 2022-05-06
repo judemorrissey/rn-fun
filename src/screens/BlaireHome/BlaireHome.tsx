@@ -1,4 +1,5 @@
-import type {ImageSourcePropType} from 'react-native';
+import type {ImageSourcePropType, ListRenderItem} from 'react-native';
+
 import * as React from 'react';
 import {useCallback, useEffect, useState} from 'react';
 import {FlatList, Linking, Text, View} from 'react-native';
@@ -9,12 +10,12 @@ import styles from './styles';
 const numCols = 4;
 
 const cardImages: Card[] = [
-  {src: require('./assets/blue.png'), matched: false},
-  {src: require('./assets/red.png'), matched: false},
-  {src: require('./assets/orange.png'), matched: false},
-  {src: require('./assets/green.png'), matched: false},
-  {src: require('./assets/yellow.png'), matched: false},
-  {src: require('./assets/purple.png'), matched: false},
+  {matched: false, src: require('./assets/blue.png')},
+  {matched: false, src: require('./assets/red.png')},
+  {matched: false, src: require('./assets/orange.png')},
+  {matched: false, src: require('./assets/green.png')},
+  {matched: false, src: require('./assets/yellow.png')},
+  {matched: false, src: require('./assets/purple.png')},
 ];
 
 type Card = {
@@ -31,6 +32,10 @@ function BlaireHome(props: Props) {
   const [choiceOne, setChoiceOne] = useState<Card | null>(null);
   const [choiceTwo, setChoiceTwo] = useState<Card | null>(null);
 
+  const onPressDinTaiFung = useCallback(() => {
+    Linking.openURL('https://dintaifungusa.com/');
+  }, []);
+
   const shuffleCards = useCallback(() => {
     const shuffledCards = [...cardImages, ...cardImages]
       .sort(() => Math.random() - 0.5)
@@ -40,13 +45,6 @@ function BlaireHome(props: Props) {
     setTurns(0);
   }, []);
 
-  const onPressCard = useCallback(
-    (card) => () => {
-      choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
-    },
-    [choiceOne, choiceTwo],
-  );
-
   const resetChoices = useCallback(() => {
     setChoiceOne(null);
     setChoiceTwo(null);
@@ -54,7 +52,7 @@ function BlaireHome(props: Props) {
   }, []);
 
   useEffect(() => {
-    if (choiceOne && choiceTwo) {
+    if (choiceOne != null && choiceTwo != null) {
       if (choiceOne.src === choiceTwo.src) {
         setCards((prevCards) => {
           return prevCards.map((card) => {
@@ -66,30 +64,42 @@ function BlaireHome(props: Props) {
         });
         resetChoices();
       } else {
-        resetChoices();
+        setTimeout(() => {
+          resetChoices();
+        }, 2000);
       }
     }
   }, [choiceOne, choiceTwo, resetChoices]);
 
-  const onPress = useCallback(() => {
-    Linking.openURL('https://dintaifungusa.com/');
-  }, []);
+  const onPressCard = useCallback(
+    (card) => () => {
+      choiceOne == null ? setChoiceOne(card) : setChoiceTwo(card);
+    },
+    [choiceOne],
+  );
 
-  const renderItem = ({item, index}) => {
-    return (
-      <SingleCard
-        cardImageSource={item.src}
-        flipped={item === choiceOne || item === choiceTwo || item.matched}
-        key={item.id}
-        onPress={onPressCard(item)}
-      />
-    );
-  };
+  const renderItem: ListRenderItem<Card> = useCallback(
+    ({item, index}) => {
+      return (
+        <SingleCard
+          cardImageSource={item.src}
+          flipped={item === choiceOne || item === choiceTwo || item.matched}
+          key={item.id}
+          onPress={onPressCard(item)}
+        />
+      );
+    },
+    [choiceOne, choiceTwo, onPressCard],
+  );
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{`B L A I R E`}</Text>
-      <Button onPress={onPress} style={{marginTop: 20}} title="Press me" />
+      <Button
+        onPress={onPressDinTaiFung}
+        style={{marginTop: 20}}
+        title="Press me"
+      />
       <Button
         onPress={shuffleCards}
         style={{marginTop: 20, marginBottom: 20}}
