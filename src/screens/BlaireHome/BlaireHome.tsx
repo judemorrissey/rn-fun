@@ -1,13 +1,13 @@
 import type {ImageSourcePropType, ListRenderItem} from 'react-native';
-
 import * as React from 'react';
 import {useCallback, useEffect, useState} from 'react';
-import {FlatList, Linking, Text, View} from 'react-native';
+import {Alert, FlatList, Linking, Text, View} from 'react-native';
 import Button from 'components/Button';
 import SingleCard from './_private/SingleCard';
 import styles from './styles';
 
-const numCols = 4;
+const NUM_COLS = 4;
+const NUM_PAIRS = 6;
 
 const cardImages: Card[] = [
   {matched: false, src: require('./assets/blue.png')},
@@ -29,6 +29,7 @@ type Props = {};
 function BlaireHome(props: Props) {
   const [cards, setCards] = useState<Card[]>([]);
   const [turns, setTurns] = useState<number>(0);
+  const [pairs, setPairs] = useState<number>(NUM_PAIRS);
   const [choiceOne, setChoiceOne] = useState<Card | null>(null);
   const [choiceTwo, setChoiceTwo] = useState<Card | null>(null);
 
@@ -62,13 +63,21 @@ function BlaireHome(props: Props) {
             return card;
           });
         });
+        setPairs((prevPairs) => prevPairs - 1);
+        if (pairs === 1) {
+          Alert.alert('Congrats', `You finished the game in ${turns} turns!`, [
+            {text: 'OK', onPress: () => shuffleCards()},
+          ]);
+          return;
+        }
         resetChoices();
       } else {
         setTimeout(() => {
           resetChoices();
-        }, 2000);
+        }, 1000);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [choiceOne, choiceTwo, resetChoices]);
 
   const onPressCard = useCallback(
@@ -92,6 +101,10 @@ function BlaireHome(props: Props) {
     [choiceOne, choiceTwo, onPressCard],
   );
 
+  const keyExtractor = useCallback((item: Card) => {
+    return String(item.id);
+  }, []);
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{`B L A I R E`}</Text>
@@ -102,14 +115,14 @@ function BlaireHome(props: Props) {
       />
       <Button
         onPress={shuffleCards}
-        style={{marginTop: 20, marginBottom: 20}}
+        style={{marginBottom: 20, marginTop: 20}}
         title="New Game"
       />
       <Text style={styles.text}>{`Turns: ${turns}`}</Text>
       <FlatList
         data={cards}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={numCols}
+        keyExtractor={keyExtractor}
+        numColumns={NUM_COLS}
         renderItem={renderItem}
       />
     </View>

@@ -1,15 +1,11 @@
 import type {ImageStyle, TextStyle, ViewStyle} from 'react-native';
-
 import {StyleSheet} from 'react-native';
-
 import theme from 'lib/theme';
 
 type Styles = {
   text: TextStyle;
   card: ViewStyle;
   image: ImageStyle;
-  unflipped: ImageStyle;
-  flipped: ImageStyle;
 };
 
 export default StyleSheet.create<Styles>({
@@ -19,9 +15,6 @@ export default StyleSheet.create<Styles>({
     justifyContent: 'center',
     position: 'relative',
   },
-  flipped: {
-    transform: [{rotateY: '0deg'}],
-  },
   image: {
     borderColor: 'white',
     borderWidth: 1,
@@ -30,9 +23,5 @@ export default StyleSheet.create<Styles>({
   },
   text: {
     color: theme.colors.text.importance.veryHigh,
-  },
-  unflipped: {
-    display: 'none',
-    transform: [{rotateY: '90deg'}],
   },
 });
