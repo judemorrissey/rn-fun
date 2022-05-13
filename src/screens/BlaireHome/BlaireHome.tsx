@@ -6,9 +6,6 @@ import Button from 'components/Button';
 import SingleCard from './_private/SingleCard';
 import styles from './styles';
 
-const NUM_COLS = 4;
-const NUM_PAIRS = 6;
-
 const cardImages: Card[] = [
   {matched: false, src: require('./assets/blue.png')},
   {matched: false, src: require('./assets/red.png')},
@@ -17,6 +14,9 @@ const cardImages: Card[] = [
   {matched: false, src: require('./assets/yellow.png')},
   {matched: false, src: require('./assets/purple.png')},
 ];
+
+const NUM_COLS = 4;
+const NUM_PAIRS = cardImages.length;
 
 type Card = {
   id?: number;
@@ -32,24 +32,27 @@ function BlaireHome(props: Props) {
   const [pairs, setPairs] = useState<number>(NUM_PAIRS);
   const [choiceOne, setChoiceOne] = useState<Card | null>(null);
   const [choiceTwo, setChoiceTwo] = useState<Card | null>(null);
+  const [isCardPressEnabled, setIsCardPressEnabled] = useState<boolean>(true);
 
   const onPressDinTaiFung = useCallback(() => {
     Linking.openURL('https://dintaifungusa.com/');
   }, []);
 
-  const shuffleCards = useCallback(() => {
+  const resetGame = useCallback(() => {
     const shuffledCards = [...cardImages, ...cardImages]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({...card, id: Math.random()}));
 
     setCards(shuffledCards);
     setTurns(0);
+    setIsCardPressEnabled(true);
   }, []);
 
   const resetChoices = useCallback(() => {
     setChoiceOne(null);
     setChoiceTwo(null);
     setTurns((prevTurns) => prevTurns + 1);
+    setIsCardPressEnabled(true);
   }, []);
 
   useEffect(() => {
@@ -64,12 +67,6 @@ function BlaireHome(props: Props) {
           });
         });
         setPairs((prevPairs) => prevPairs - 1);
-        if (pairs === 1) {
-          Alert.alert('Congrats', `You finished the game in ${turns} turns!`, [
-            {text: 'OK', onPress: () => shuffleCards()},
-          ]);
-          return;
-        }
         resetChoices();
       } else {
         setTimeout(() => {
@@ -80,11 +77,27 @@ function BlaireHome(props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [choiceOne, choiceTwo, resetChoices]);
 
+  useEffect(() => {
+    if (pairs === 0) {
+      Alert.alert('Congrats', `You finished the game in ${turns} turns!`, [
+        {onPress: () => resetGame(), text: 'OK'},
+      ]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pairs]);
+
   const onPressCard = useCallback(
     (card) => () => {
-      choiceOne == null ? setChoiceOne(card) : setChoiceTwo(card);
+      if (isCardPressEnabled) {
+        if (choiceOne == null) {
+          setChoiceOne(card);
+        } else {
+          setChoiceTwo(card);
+          setIsCardPressEnabled(false);
+        }
+      }
     },
-    [choiceOne],
+    [choiceOne, isCardPressEnabled],
   );
 
   const renderItem: ListRenderItem<Card> = useCallback(
@@ -92,7 +105,7 @@ function BlaireHome(props: Props) {
       return (
         <SingleCard
           cardImageSource={item.src}
-          flipped={item === choiceOne || item === choiceTwo || item.matched}
+          isFlipped={item === choiceOne || item === choiceTwo || item.matched}
           key={item.id}
           onPress={onPressCard(item)}
         />
@@ -108,16 +121,8 @@ function BlaireHome(props: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{`B L A I R E`}</Text>
-      <Button
-        onPress={onPressDinTaiFung}
-        style={{marginTop: 20}}
-        title="Press me"
-      />
-      <Button
-        onPress={shuffleCards}
-        style={{marginBottom: 20, marginTop: 20}}
-        title="New Game"
-      />
+      <Button onPress={onPressDinTaiFung} title="Press me" />
+      <Button onPress={resetGame} style={styles.button} title="New Game" />
       <Text style={styles.text}>{`Turns: ${turns}`}</Text>
       <FlatList
         data={cards}

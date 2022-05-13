@@ -19,13 +19,13 @@ const WIDTH = Dimensions.get('screen').width;
 type Props = {
   cardImageSource: ImageSourcePropType;
   onPress: () => void;
-  flipped: boolean;
+  isFlipped: boolean;
 };
 
 function SingleCard(props: Props) {
-  const {cardImageSource, onPress, flipped} = props;
+  const {cardImageSource, onPress, isFlipped} = props;
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
-  const [internalFlipped, setInternalFlipped] = useState<boolean>(flipped);
+  const [internalFlipped, setInternalFlipped] = useState<boolean>(isFlipped);
 
   const rotation = useSharedValue(0);
   const animatedStyle = useAnimatedStyle(() => {
@@ -46,7 +46,7 @@ function SingleCard(props: Props) {
           duration: 300,
         },
         () => {
-          runOnJS(setInternalFlipped)(flipped);
+          runOnJS(setInternalFlipped)(isFlipped);
           rotation.value = withTiming(0, {
             duration: 300,
           });
@@ -56,9 +56,9 @@ function SingleCard(props: Props) {
       setIsInitialized(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [flipped, rotation]);
+  }, [isFlipped, rotation]);
 
-  const handleClick = useCallback(() => {
+  const handlePress = useCallback(() => {
     onPress();
   }, [onPress]);
 
@@ -66,7 +66,7 @@ function SingleCard(props: Props) {
     <View>
       <Animated.View
         style={[styles.card, {height: WIDTH / NUM_COLS}, animatedStyle]}>
-        <Pressable onPress={handleClick}>
+        <Pressable onPress={handlePress}>
           <Image
             source={internalFlipped ? cardImageSource : coverImage}
             style={styles.image}
