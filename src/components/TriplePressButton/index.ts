@@ -1,3 +1,1 @@
-import TriplePressButton from './TriplePressButton';
-
-export default TriplePressButton;
+export {default} from './TriplePressButton';

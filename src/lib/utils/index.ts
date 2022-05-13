@@ -1,3 +1,1 @@
-import utils from './utils';
-
-export default utils;
+export {default} from './utils';

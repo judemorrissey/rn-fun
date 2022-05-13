@@ -1,3 +1,1 @@
-import VeronicaHome from './VeronicaHome';
-
-export default VeronicaHome;
+export {default} from './VeronicaHome';

@@ -1,3 +1,1 @@
-import SemaHome from './SemaHome';
-
-export default SemaHome;
+export {default} from './SemaHome';
