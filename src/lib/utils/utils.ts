@@ -55,6 +55,13 @@ const utils = {
     );
   },
 
+  // returns a number within the range [min, max)
+  randomNumberFromRange: function (min: number, max: number): number {
+    const difference = max - min;
+    const randomWithinDifference = Math.random() * difference;
+    return min + randomWithinDifference;
+  },
+
   spongebob: function (text: string, deterministic: boolean = false): string {
     let randomFunc = Math.random;
     if (deterministic) {

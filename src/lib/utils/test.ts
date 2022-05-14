@@ -177,34 +177,52 @@ describe('text transformations', () => {
       }
     });
   });
+});
 
-  describe('unit conversions', () => {
-    const celciusFahrenheitTuples: [number, number][] = [
-      [0, 32], // freezing point of water
-      [100, 212], // boiling point of water
-      [24, 75], // room temperature (Jude approved™)
-    ];
+describe('unit conversions', () => {
+  const celciusFahrenheitTuples: [number, number][] = [
+    [0, 32], // freezing point of water
+    [100, 212], // boiling point of water
+    [24, 75], // room temperature (Jude approved™)
+  ];
 
-    describe('utils#convertCelsiusToFahrenheit', () => {
-      it('converts from celsius to fahrenheit', () => {
-        for (const [celsius, fahrenheit] of celciusFahrenheitTuples) {
-          const converted = Math.round(
-            utils.convertCelsiusToFahrenheit(celsius),
-          );
-          expect(converted).toStrictEqual(fahrenheit);
-        }
-      });
+  describe('utils#convertCelsiusToFahrenheit', () => {
+    it('converts from celsius to fahrenheit', () => {
+      for (const [celsius, fahrenheit] of celciusFahrenheitTuples) {
+        const converted = Math.round(utils.convertCelsiusToFahrenheit(celsius));
+        expect(converted).toStrictEqual(fahrenheit);
+      }
     });
+  });
 
-    describe('utils#convertFahrenheitToCelsius', () => {
-      it('converts from fahrenheit to celsius', () => {
-        for (const [celsius, fahrenheit] of celciusFahrenheitTuples) {
-          const converted = Math.round(
-            utils.convertFahrenheitToCelsius(fahrenheit),
-          );
-          expect(converted).toStrictEqual(celsius);
+  describe('utils#convertFahrenheitToCelsius', () => {
+    it('converts from fahrenheit to celsius', () => {
+      for (const [celsius, fahrenheit] of celciusFahrenheitTuples) {
+        const converted = Math.round(
+          utils.convertFahrenheitToCelsius(fahrenheit),
+        );
+        expect(converted).toStrictEqual(celsius);
+      }
+    });
+  });
+});
+
+describe('ranges and intervals', () => {
+  describe('utils#randomNumberFromRange', () => {
+    const ranges = [
+      [0, 1],
+      [5, 10],
+      [1734, 17234819234],
+    ] as const;
+
+    it('return a random number within the range', () => {
+      for (const [min, max] of ranges) {
+        for (let i = 0; i < 10; ++i) {
+          const randomNumber = utils.randomNumberFromRange(min, max);
+          expect(randomNumber).toBeGreaterThanOrEqual(min);
+          expect(randomNumber).toBeLessThan(max);
         }
-      });
+      }
     });
   });
 });

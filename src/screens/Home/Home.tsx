@@ -56,6 +56,10 @@ function Home() {
     navigation.navigate('BlaireHome');
   }, [navigation]);
 
+  const onPressWhackAMole = useCallback(() => {
+    navigation.navigate('WhackAMole');
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{headerText}</Text>
@@ -69,6 +73,11 @@ function Home() {
       <Button onPress={onPressKen} style={styles.button} title="Ken" />
       <Button onPress={onPressSema} style={styles.button} title="Sema" />
       <Button onPress={onPressBlaire} style={styles.button} title="Blaire" />
+      <Button
+        onPress={onPressWhackAMole}
+        style={styles.button}
+        title="Whack A Mole"
+      />
     </View>
   );
 }
