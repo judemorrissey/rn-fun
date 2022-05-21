@@ -23,7 +23,7 @@ jobs:
         cache: 'yarn'
     - name: Install Dependencies
       run: yarn install --frozen-lockfile
-    - name: Run Jest Tests
-      run: yarn test
     - name: Run ESLint
       run: ./node_modules/eslint/bin/eslint.js . --ext .js,.jsx,.ts,.tsx
+    - name: Run Jest Tests
+      run: yarn test
