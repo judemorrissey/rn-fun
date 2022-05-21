@@ -7,19 +7,25 @@ import theme from 'lib/theme';
 type Styles = {
   button: ViewStyle;
   container: ViewStyle;
-  text: TextStyle;
+  headerText: TextStyle;
+  weatherWidget: ViewStyle;
 };
 
 export default StyleSheet.create<Styles>({
   button: {
+    alignSelf: 'center',
     marginVertical: 8,
   },
   container: {
-    alignItems: 'center',
     backgroundColor: 'steelblue',
     flex: 1,
   },
-  text: {
+  headerText: {
+    ...theme.fonts[20],
     color: theme.colors.text.importance.veryHigh,
+    textAlign: 'center',
+  },
+  weatherWidget: {
+    margin: 8,
   },
 });

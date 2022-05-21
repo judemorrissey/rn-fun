@@ -19,6 +19,7 @@ module.exports = {
   plugins: [
     '@typescript-eslint',
     // begin plugins outside of default from template
+    'typescript-sort-keys',
     'eslint-comments',
     'react',
   ],
@@ -50,6 +51,9 @@ module.exports = {
         //     'allowNullableObject': false,
         //   },
         // ],
+        // https://github.com/infctr/eslint-plugin-typescript-sort-keys
+        "typescript-sort-keys/interface": ERROR,
+        "typescript-sort-keys/string-enum": ERROR,
         // react specific rules
         'react/jsx-boolean-value': [ERROR, 'always'],
         'react/jsx-fragments': ERROR,

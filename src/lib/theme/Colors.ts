@@ -21,6 +21,10 @@ export default {
     characterTile: {
       default: palette.blueGray,
     },
+    weatherWidget: {
+      container: palette.blueGray,
+      tile: palette.darkBlue,
+    },
   },
 
   text: {
