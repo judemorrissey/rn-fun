@@ -3,7 +3,7 @@ module.exports = {
   bracketSpacing: false,
   // Avoid orphaning `>` on a new line to differentiate from self-closing tags.
   // An orphaned `>` looks like a typo in most cases anyway.
-  jsxBracketSameLine: true,
+  bracketSameLine: true,
   // Avoid mixing quoted and unquoted object keys in the same object.
   quoteProps: 'consistent',
   // React convention is `prop="string"` to differentiate from `prop={'string'}`

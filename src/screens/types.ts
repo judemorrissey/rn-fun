@@ -1,10 +1,10 @@
 export type RootStackParams = {
+  BlaireHome: undefined;
+  GraphqlExample: undefined;
   Home: undefined;
   JudeHome: undefined;
   KenHome: undefined;
   MatthewHome: undefined;
-  VeronicaHome: undefined;
   SemaHome: undefined;
-  BlaireHome: undefined;
-  GraphqlExample: undefined;
+  VeronicaHome: undefined;
 };

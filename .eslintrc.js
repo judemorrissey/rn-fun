@@ -8,6 +8,11 @@ module.exports = {
     es6: true,
     node: true,
   },
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
   extends: [
     '@react-native-community',
     // begin extends outside of default from template

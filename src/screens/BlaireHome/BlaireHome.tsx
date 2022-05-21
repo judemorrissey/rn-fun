@@ -20,8 +20,8 @@ const NUM_PAIRS = cardImages.length;
 
 type Card = {
   id?: number;
-  src: ImageSourcePropType;
   matched: boolean;
+  src: ImageSourcePropType;
 };
 
 type Props = {};
@@ -74,7 +74,6 @@ function BlaireHome(props: Props) {
         }, 1000);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [choiceOne, choiceTwo, resetChoices]);
 
   useEffect(() => {
