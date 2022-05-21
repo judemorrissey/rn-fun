@@ -5,6 +5,8 @@ import * as React from 'react';
 import {useCallback, useMemo, useState} from 'react';
 import {Alert, FlatList, Linking, StyleSheet, Text, View} from 'react-native';
 
+import axios from 'axios';
+
 import Button from 'components/Button';
 
 import WeatherTile from './_private/WeatherTile';
@@ -28,10 +30,10 @@ function WeatherWidget(props: Props) {
   const onPressGetWeather = useCallback(async () => {
     setIsRequestInFlight(true);
     try {
-      const response = await fetch(
+      const response = await axios.get(
         'https://www.metaweather.com/api/location/2487956/',
       );
-      const json: WeatherResponse = await response.json();
+      const json: WeatherResponse = await response.data;
       setWeatherResponse(json);
     } catch (err: unknown) {
       let message = '';
