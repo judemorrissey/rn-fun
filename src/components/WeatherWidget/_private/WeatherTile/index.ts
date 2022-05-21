@@ -1,3 +1,1 @@
-import WeatherTile from './WeatherTile';
-
-export default WeatherTile;
+export {default} from './WeatherTile';
