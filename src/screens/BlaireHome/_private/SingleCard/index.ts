@@ -1,3 +1,1 @@
-import SingleCard from './SingleCard';
-
-export default SingleCard;
+export {default} from './SingleCard';

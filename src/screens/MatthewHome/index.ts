@@ -1,3 +1,1 @@
-import MatthewHome from './MatthewHome';
-
-export default MatthewHome;
+export {default} from './MatthewHome';

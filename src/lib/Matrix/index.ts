@@ -1,3 +1,1 @@
-import Matrix from './Matrix';
-
-export default Matrix;
+export {default} from './Matrix';

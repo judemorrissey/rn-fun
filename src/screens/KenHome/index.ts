@@ -1,3 +1,1 @@
-import KenHome from './KenHome';
-
-export default KenHome;
+export {default} from './KenHome';

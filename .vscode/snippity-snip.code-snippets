@@ -93,9 +93,7 @@
     "scope": "typescript",
     "prefix": "rn-index",
     "body": [
-      "import ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/} from './${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/}';",
-      "",
-      "export default ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/};",
+      "export {default} from './${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/}';",
       ""
     ],
     "description": "Use this for the <ComponentName>/index.js file, so the component can be imported like `import ComponentName from \"components/ComponentName\"`"
