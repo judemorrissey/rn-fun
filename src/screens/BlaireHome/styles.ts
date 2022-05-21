@@ -3,9 +3,9 @@ import type {TextStyle, ViewStyle} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 type Styles = {
+  button: ViewStyle;
   container: ViewStyle;
   text: TextStyle;
-  button: ViewStyle;
 };
 
 export default StyleSheet.create<Styles>({

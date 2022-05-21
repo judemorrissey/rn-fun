@@ -18,8 +18,8 @@ const WIDTH = Dimensions.get('screen').width;
 
 type Props = {
   cardImageSource: ImageSourcePropType;
-  onPress: () => void;
   isFlipped: boolean;
+  onPress: () => void;
 };
 
 function SingleCard(props: Props) {

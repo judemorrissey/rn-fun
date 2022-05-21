@@ -3,9 +3,9 @@ import {StyleSheet} from 'react-native';
 import theme from 'lib/theme';
 
 type Styles = {
-  text: TextStyle;
   card: ViewStyle;
   image: ImageStyle;
+  text: TextStyle;
 };
 
 export default StyleSheet.create<Styles>({
