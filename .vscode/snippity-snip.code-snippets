@@ -77,7 +77,6 @@
     "scope": "typescriptreact",
     "prefix": "rn-test-component",
     "body": [
-      "import * as React from 'react';",
       "import {render} from '@testing-library/react-native';",
       "",
       "import ${TM_DIRECTORY/^.+[\\/\\\\]+(.*)$/$1/} from './';",
