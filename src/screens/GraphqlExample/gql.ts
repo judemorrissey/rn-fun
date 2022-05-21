@@ -25,9 +25,9 @@ export const ALL_POKEMON_QUERY = gql`
 
 // TODO: generate these?
 export type Pokemon = {
+  evolves_from_species_id: number;
   id: number;
   name: string;
-  evolves_from_species_id: number;
   pokemon_v2_evolutionchain: {
     pokemon_v2_pokemonspecies: Pokemon[];
   };
