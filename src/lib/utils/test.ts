@@ -1,6 +1,6 @@
 import crypto from 'crypto';
 
-import utils from './utils';
+import * as utils from './utils';
 
 describe('upper and lower case utils', () => {
   const alphabetLower = 'abcdefghijklmnopqrstuvwxyzåéæüøñôï';

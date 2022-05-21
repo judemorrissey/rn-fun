@@ -5,7 +5,7 @@ import * as React from 'react';
 import {useCallback, useMemo} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 
-import utils from 'lib/utils';
+import {convertCelsiusToFahrenheit} from 'lib/utils';
 
 import styles from './styles';
 
@@ -37,7 +37,7 @@ function WeatherTile(props: Props) {
       if (isCelsius) {
         return `${Math.round(tempInC)} °C`;
       }
-      return `${Math.round(utils.convertCelsiusToFahrenheit(tempInC))} °F`;
+      return `${Math.round(convertCelsiusToFahrenheit(tempInC))} °F`;
     },
     [isCelsius],
   );

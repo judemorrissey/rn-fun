@@ -6,7 +6,7 @@ import {useCallback, useEffect, useState} from 'react';
 import {ScrollView, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
-import utils from 'lib/utils';
+import {spongebob} from 'lib/utils';
 
 import Button from 'components/Button';
 import WeatherWidget from 'components/WeatherWidget';
@@ -20,13 +20,11 @@ const HEADER_TEXT = 'Hello you are home';
 function Home() {
   const navigation = useNavigation<HomeScreenProp>();
 
-  const [headerText, setHeaderText] = useState<string>(
-    utils.spongebob(HEADER_TEXT),
-  );
+  const [headerText, setHeaderText] = useState<string>(spongebob(HEADER_TEXT));
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setHeaderText(utils.spongebob(HEADER_TEXT));
+      setHeaderText(spongebob(HEADER_TEXT));
     }, 1000);
     return () => {
       clearInterval(intervalId);
