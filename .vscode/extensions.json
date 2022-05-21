@@ -2,6 +2,7 @@
     "recommendations": [
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
-        "wmaurer.change-case"
+        "wmaurer.change-case",
+        "apollographql.vscode-apollo"
     ]
 }

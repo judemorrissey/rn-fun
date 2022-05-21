@@ -3,6 +3,10 @@
 import Prando from 'prando';
 
 const utils = {
+  capitalize: function (str: string): string {
+    return `${str.slice(0, 1).toUpperCase()}${str.slice(1)}`;
+  },
+
   convertCelsiusToFahrenheit: function (celsius: number): number {
     return (celsius * 9) / 5 + 32;
   },

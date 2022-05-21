@@ -21,6 +21,7 @@ export default {
     characterTile: {
       default: palette.blueGray,
     },
+    pokemonTile: palette.darkBlue,
     weatherWidget: {
       container: palette.blueGray,
       tile: palette.darkBlue,

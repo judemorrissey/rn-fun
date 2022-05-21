@@ -21,6 +21,33 @@ describe('upper and lower case utils', () => {
   chaos += alphabetUpper.slice(minLength);
   chaos += notAlphabetical.slice(minLength);
 
+  describe('utils#capitalize', () => {
+    it('capitalizes the first letter of a string', () => {
+      for (const str of [
+        alphabetLower,
+        alphabetUpper,
+        notAlphabetical,
+        chaos,
+      ]) {
+        const capitalized = utils.capitalize(str);
+        expect(capitalized[0]).toStrictEqual(str[0].toUpperCase());
+        expect(capitalized.slice(1)).toStrictEqual(str.slice(1));
+      }
+    });
+
+    it('works on single characters', () => {
+      for (const char of alphabetLower.split('')) {
+        expect(utils.capitalize(char)).toStrictEqual(char.toUpperCase());
+      }
+      for (const char of alphabetUpper.split('')) {
+        expect(utils.capitalize(char)).toStrictEqual(char.toUpperCase());
+      }
+      for (const char of notAlphabetical.split('')) {
+        expect(utils.capitalize(char)).toStrictEqual(char.toUpperCase());
+      }
+    });
+  });
+
   describe('utils#isAllLetters', () => {
     it('works on single characters', () => {
       for (const char of alphabetLower.split('')) {

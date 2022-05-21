@@ -57,6 +57,10 @@ function Home() {
     navigation.navigate('BlaireHome');
   }, [navigation]);
 
+  const onPressGraphql = useCallback(() => {
+    navigation.navigate('GraphqlExample');
+  }, [navigation]);
+
   return (
     <ScrollView style={styles.container}>
       <WeatherWidget style={styles.weatherWidget} />
@@ -71,6 +75,7 @@ function Home() {
       <Button onPress={onPressKen} style={styles.button} title="Ken" />
       <Button onPress={onPressSema} style={styles.button} title="Sema" />
       <Button onPress={onPressBlaire} style={styles.button} title="Blaire" />
+      <Button onPress={onPressGraphql} style={styles.button} title="GraphQL" />
     </ScrollView>
   );
 }
